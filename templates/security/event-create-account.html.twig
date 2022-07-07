@@ -1,0 +1,831 @@
+{% extends 'base-login.html.twig' %}
+
+{% block title %}Eventoo{% endblock %}
+
+
+{% block stylesheets %}
+{{ parent() }}
+
+<link href="{{ asset('/assets/css/pages/wizard/wizard-1.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+ 
+{% block body %}
+<span id="translation" trans="{{app.session.get('lng')}}"></span>
+
+    	<!--begin::Main-->
+	<div class="d-flex flex-column flex-root">
+
+       
+
+		<!--begin::Login-->
+<div class="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white" id="kt_login">
+    <!--begin::Aside-->
+    <div class="login-aside login-aside-event d-flex flex-column flex-row-auto" style="background-color: #F2C98A; background-image: url({{profile.event.intoTheEventPhotoURL}})">
+        <!--begin::Aside Top-->
+        <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
+            <!--begin::Aside header-->
+            
+            <!--end::Aside header-->
+
+            <!--begin::Aside title-->
+             
+            <!--end::Aside title-->
+        </div>
+        <!--end::Aside Top-->
+
+        <!--begin::Aside Bottom-->
+        <div class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center" style="background-image: url(assets/media/svg/illustrations/login-visual-1.svg)"></div>
+        <!--end::Aside Bottom-->
+    </div>
+    <!--begin::Aside-->
+
+    <!--begin::Content-->
+    <div class="p-7 mx-auto">
+
+
+        {% if (a >= b)  ==  true %}
+            <h1 class="text-danger">Oups !!</h1>
+            <h3>{% trans into app.session.get('lng') %}le nombre maximum d'abonnements a été dépassé. Merci d'utiliser nos services.{% endtrans %} {{ profile.label }}</h3>
+
+
+        {% else %}
+
+        
+        <h3>{% trans into app.session.get('lng') %}Création du compte{% endtrans %} {{ profile.label }}</h3>
+
+                 <div class="wizard wizard-1" id="kt_wizard_v1" data-wizard-state="step-first" data-wizard-clickable="false">
+            <!--begin::Wizard Nav-->
+            <div class="wizard-nav border-bottom">
+                <div class="wizard-steps p-8 p-lg-10">
+                    <!--begin::Wizard Step 1 Nav-->
+                    <div class="wizard-step" data-wizard-type="step" data-wizard-state="current">
+                        <div class="wizard-label">
+                            <i class="wizard-icon flaticon-avatar"></i>
+                            <h3 class="wizard-title">1. {% trans into app.session.get('lng') %}Compte{% endtrans %}</h3>
+                        </div>
+                        <span class="svg-icon svg-icon-xl wizard-arrow"><!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon points="0 0 24 0 24 24 0 24"/>
+        <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1"/>
+        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/>
+    </g>
+</svg><!--end::Svg Icon--></span>                    </div>
+                    <!--end::Wizard Step 1 Nav-->
+
+                    <!--begin::Wizard Step 2 Nav-->
+                    <div class="wizard-step" data-wizard-type="step">
+                        <div class="wizard-label">
+                            <i class="wizard-icon flaticon-list"></i>
+                            <h3 class="wizard-title">2. {% trans into app.session.get('lng') %}Plus d'informations{% endtrans %}</h3>
+                        </div>
+                        <span class="svg-icon svg-icon-xl wizard-arrow"><!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon points="0 0 24 0 24 24 0 24"/>
+        <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1"/>
+        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/>
+    </g>
+</svg><!--end::Svg Icon--></span>                    </div>
+                    <!--end::Wizard Step 2 Nav-->
+
+                    <!--begin::Wizard Step 5 Nav-->
+                    <div class="wizard-step" data-wizard-type="step">
+                        <div class="wizard-label">
+                            <i class="wizard-icon flaticon-globe"></i>
+                            <h3 class="wizard-title">3. {% trans into app.session.get('lng') %}Validation{% endtrans %}</h3>
+                        </div>
+                        <span class="svg-icon svg-icon-xl wizard-arrow last"><!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon points="0 0 24 0 24 24 0 24"/>
+        <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1"/>
+        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/>
+    </g>
+</svg><!--end::Svg Icon--></span>                    </div>
+                    <!--end::Wizard Step 5 Nav-->
+                </div>
+            </div>
+            <!--end::Wizard Nav-->
+
+            <!--begin::Wizard Body-->
+            <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
+
+
+                <div class="col-xl-12 col-xxl-7">
+
+                    
+
+                    {% if error != '' %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                    {% endif %}
+
+
+                     {% if success != '' %}
+                    <div class="alert alert-success">
+                        {{success}} <br>
+
+                        
+                    </div>
+
+
+                   <div class="mb-4">
+                   
+                    <a class="text-info" href="{{ path('app_login',{eventID:profile.event.unqueID}) }}">{% trans into app.session.get('lng') %}Se connecter{% endtrans %}</a></div>
+                    {% endif %}
+                    
+
+                    
+
+
+
+                    <!--begin::Wizard Form-->
+                    <form class="form" id="kt_form" method="post">
+                        <!--begin::Wizard Step 1-->
+                        <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
+                            <h3 class="mb-10 font-weight-bold text-dark">{% trans into app.session.get('lng') %}Compte{% endtrans %}</h3>
+                            <!--begin::Input-->
+                            
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>{% trans into app.session.get('lng') %}Civilité{% endtrans %}</label>
+                                        <select class="form-control form-control-solid form-control-lg" name="civility">
+                                            <option value="">-- --</option>
+                                            <option value="0">Mr</option>
+                                            <option value="1">Mme</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>{% trans into app.session.get('lng') %}Nom{% endtrans %}</label>
+                                        <input type="text" class="form-control form-control-solid form-control-lg" name="name" placeholder="" value="" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>{% trans into app.session.get('lng') %}Prénom{% endtrans %}</label>
+                                        <input type="text" class="form-control form-control-solid form-control-lg" name="lastname" placeholder="" value="" />
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+ 
+                                    
+
+                            {% if subprofiles | length != 0 %}
+                                <div class="form-group">
+                                    <label>{% trans into app.session.get('lng') %}je suis un{% endtrans %}</label>
+                                    <select class="form-control form-control-solid form-control-lg" name="subprofile">
+                                        <option value="">{% trans into app.session.get('lng') %}Veuillez choisir un sous-profil{% endtrans %}</option>
+                                        {% for item in subprofiles %}
+                                            <option value="{{item.id}}">{{item.name}}</option> 
+                                        {% endfor %}
+                                        
+                                    </select>
+                                </div>
+                            {% endif %}
+                                    
+
+ 
+
+
+
+
+                            
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Télephone{% endtrans %}</label>
+                                <input type="text" class="form-control form-control-solid form-control-lg" name="phone" placeholder="" value="" />
+                            </div>
+                            
+
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Email{% endtrans %}</label>
+                                <input type="text" class="form-control form-control-solid form-control-lg" name="email" placeholder="" value="" />
+                            </div>
+
+                            
+
+
+
+
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Mot de passe{% endtrans %}</label>
+                                <div class="input-group"> 
+                                    
+                                    <input class="password-target form-control form-control-solid form-control-lg"
+                                        type="password"  name="password" />
+        
+                                        
+            
+                                            <div class="input-group-append">
+                                                <span class="" style="padding-top: 18px ; position: absolute; right: 15px ;z-index: 15">
+                                                    <i class="icon-2x  flaticon-eye password-toogler text-muted "></i>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Confirmer votre mot de passe{% endtrans %}</label>
+                                <div class="input-group"> 
+                                    
+                                    <input name="passwordconfirm" class="password-target form-control form-control-solid form-control-lg" type="password"   />
+                                    <div class="input-group-append">
+                                        <span class="" style="padding-top: 18px ; position: absolute; right: 15px ;z-index: 15">
+                                            <i class="icon-2x  flaticon-eye password-toogler text-muted "></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                            
+                            <!--end::Input-->
+
+                            
+                            
+                        </div>
+                        <!--end::Wizard Step 1-->
+
+                    
+
+                        <!--begin::Wizard Step 2-->
+                        <div class="pb-5" data-wizard-type="step-content">
+
+
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Fonction/Occupation{% endtrans %}</label>
+                                <input type="text" class="form-control form-control-solid form-control-lg" name="FonctionOccupation" placeholder="" value="" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Nom Entreprise / Établissement{% endtrans %}</label>
+                                <input type="text" class="form-control form-control-solid form-control-lg" name="companyEtablisment" placeholder="" value="" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Pays{% endtrans %}</label>
+                                <select type="text" class="form-control form-control-solid form-control-lg" name="country" >
+                                    {% for country in countries %}
+                                        <option value="{{country.id}}">{{country.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Ville{% endtrans %}</label>
+                                <input type="text" class="form-control form-control-solid form-control-lg" name="city" placeholder="" value="" />
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Secteur d'activité{% endtrans %}</label>
+                                <input type="text" class="form-control form-control-solid form-control-lg" name="activity_sector" placeholder="" value="" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Décrivez votre offre /produits /activité/ compétence{% endtrans %}</label>
+                                <input type="text" class="form-control form-control-solid form-control-lg" name="my_offer" placeholder="" value="" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Décrivez votre besoin/ demande/ qu'est-ce que vous cherchez{% endtrans %}</label>
+                                <input type="text" class="form-control form-control-solid form-control-lg" name="my_needs" placeholder="" value="" />
+                            </div>
+
+
+                            
+                            
+                            {% for item in profile.eventAssociatedProfileFeilds %}
+                                {% if item.field.primaryFeild == true %}
+                                    <div class="form-group">
+                                    <label>
+                                    {% if app.session.get('lng') != 'en_EN' %}
+                                        {{ item.field.labelFR }}
+                                    {% else %}
+                                        {{ item.field.labelEN }}
+                                    {% endif %}
+                                    </label>
+
+                                    {% if item.field.eventProfileFeildValues | length == 0 %}
+                                        <input type="text" class="form-control form-control-solid form-control-lg" name="{{item.field.id}}_input"  />
+                                    {% else %}
+                                        <select class="form-control form-control-solid form-control-lg" name="{{item.field.id}}_input">
+                                            {% for value in item.field.eventProfileFeildValues  %}
+                                                
+                                            {% if app.session.get('lng') != 'en_EN' %}
+                                                <option value="{{value.value}}">{{ value.value }}</option>
+                                            {% else %}
+                                                <option value="{{value.valueEN}}">{{ value.valueEN }}</option>
+                                            {% endif %}
+
+                                            
+                                            {% endfor %}
+                                        </select>
+                                    {% endif %}
+                                    
+                                </div>
+
+                                {% endif %}                                
+                            {% endfor %}
+                        </div>
+
+                        <!--end::Wizard Step 5-->
+                        <!--begin::Wizard Step 3-->
+                        <div class="pb-5" data-wizard-type="step-content">
+                            <!--begin::Section-->
+                            <h4 class="mb-10 font-weight-bold text-dark">
+                            {% trans into app.session.get('lng') %}Peut-être souhaitez-vous revoir vos données avant la validation{% endtrans %}
+                            </h4>
+                            
+                            
+                            
+                        </div>
+
+                        <!--end::Wizard Step 5-->
+                        
+
+                        <!--begin::Wizard Actions-->
+                        <div class="d-flex justify-content-between border-top mt-5 pt-10">
+                            <div class="mr-2">
+                                <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4" data-wizard-type="action-prev">
+                                    {% trans into app.session.get('lng') %}Précédent{% endtrans %}
+                                </button>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-success font-weight-bold text-uppercase px-9 py-4" data-wizard-type="action-submit">
+                                    {% trans into app.session.get('lng') %}Valider{% endtrans %}
+                                </button>
+                                <button type="button" class="btn btn-primary font-weight-bold text-uppercase px-9 py-4" data-wizard-type="action-next">
+                                    {% trans into app.session.get('lng') %}Suivant{% endtrans %}
+                                </button>
+                            </div>
+                        </div>
+                        <!--end::Wizard Actions-->
+                    </form>
+                    <!--end::Wizard Form-->
+                </div>
+
+
+
+
+                
+            </div>
+
+
+           
+            <!--end::Wizard Body-->
+        </div>
+            
+        {% endif %}
+
+
+    </div>
+    <!--end::Content-->
+</div>
+<!--end::Login-->
+	</div>
+<!--end::Main-->
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+
+
+
+    <script src="/assets/js/events/createProfileAccount.js" ></script>
+
+
+
+    <script>
+    "use strict";
+let lng = document.getElementById('translation').getAttribute('trans');
+
+let translation = {
+
+    custom : {
+		fr: {
+			message : 'Veuillez saisir une valeur.'
+		},
+		en: {
+			message : 'This feild is required.'
+		},
+		
+	},
+    error : {
+		fr: {
+			message : "Désolé, il semble qu'il y ait des erreurs détectées, veuillez réessayer."
+		},
+		en: {
+			message : 'Sorry, looks like there are some errors detected, please try again.'
+		},
+		
+	},
+	emptyClientName: {
+		fr: {
+			message : 'Veuillez saisir le nom du client. Le nom du client ne peut pas être vide.'
+		},
+		en: {
+			message : 'Please enter the name of the customer. Customer name cannot be empty.'
+		},
+		
+	},
+	clientNameLength: {
+		fr: {
+			message : 'Veuillez réessayer entre 1 et 75 caractères'
+		},
+		en: {
+			message : 'Please try again between 1 and 75 characters'
+		},
+		
+	},
+
+	emptyClientFirstName: {
+		fr: {
+			message : 'Veuillez saisir votre prénom. Le prénom ne peut pas être vide.'
+		},
+		en: {
+			message : 'Please enter your first name. The first name cannot be empty.'
+		},
+		
+	},
+	clientFirstNameLength: {
+		fr: {
+			message : 'Veuillez réessayer entre 1 et 50 caractères'
+		},
+		en: {
+			message : 'Please try again between 1 and 50 characters'
+		},
+		
+	},
+	
+
+	emptyClientLasttName: {
+		fr: {
+			message : 'Veuillez saisir votre nom. Le prénom ne peut pas être vide.'
+		},
+		en: {
+			message : 'Please enter your last name. The last name cannot be empty.'
+		},
+		
+	},
+	clientLastNameLength: {
+		fr: {
+			message : 'Veuillez réessayer entre 1 et 50 caractères'
+		},
+		en: {
+			message : 'Please try again between 1 and 50 characters'
+		},
+		
+	},
+
+	emptyClientCivility : {
+		fr: {
+			message : 'Veuillez choisir votre civilité. La civilité ne peut pas être vide.'
+		},
+		en: {
+			message : 'Please choose your civility. Civility cannot be empty.'
+		},
+		
+	},
+
+	emptyClientFunction: {
+		fr: {
+			message : 'Veuillez saisir votre fonction. La fonction ne peut pas être vide.'
+		},
+		en: {
+			message : 'Please enter your function. The function cannot be empty.'
+		},
+		
+	},
+
+	clientPhoneEmpty : {
+		fr: {
+			message : "Veuillez saisir votre numéro de télephone."
+		},
+		en: {
+			message : 'Please enter your phone number.'
+		},
+		
+	},
+
+	clientEmailEmpty : {
+		fr: {
+			message : "Veuillez saisir votre email"
+		},
+		en: {
+			message : 'Please enter your email'
+		}, 
+
+	},
+	clientValidEmail : {
+			
+		fr: {
+			message : "L'adresse email renseignée n'est pas valide"
+		},
+		en: {
+			message : 'The email address entered is not valid'
+		},
+	},
+
+	clientPasswordEmpty : {
+		fr: {
+			message : "Saisissez votre mot de pass"
+		},
+		en: {
+			message : 'Enter your password'
+		}, 
+
+	},
+	clientValidPassword : {
+			
+		fr: {
+			message : "Le mot de passe inséré ne respecte pas la condition ci-dessous. Veuillez réessayer 8 caractères minimum"
+		},
+		en: {
+			message : 'The entered password does not respect the condition below. Please try again 8 characters minimum'
+		},
+	},
+
+	clientPhotoErr : {
+			
+		fr: {
+			message : "La photo inséré ne respecte pas les conditions ci-dessous. Veuillez réessayer Dimension minimale 400*400 pixels (optimale 700*700 pixels)  Format .jpg, jpeg ou .png "
+		},
+		en: {
+			message : 'The inserted photo does not respect the conditions below. Please try again Minimum dimension 400 * 400 pixels (optimal 700 * 700 pixels) Format .jpg, jpeg or .png'
+		},
+	},
+	
+	clientLogoErr : {
+			
+		fr: {
+			message : "Le logo inséré ne respecte pas les conditions ci-dessous. Veuillez réessayer Dimension minimale 400*400 pixels (optimale 700*700 pixels)  Format .jpg, jpeg ou .png "
+		},
+		en: {
+			message : 'The inserted logo does not respect the conditions below. Please try again Minimum dimension 400 * 400 pixels (optimal 700 * 700 pixels) Format .jpg, jpeg or .png'
+		},
+	},
+}
+
+
+// Class definition
+var KTWizard1 = function () {
+	// Base elements
+	var _wizardEl;
+	var _formEl;
+	var _wizard;
+	var _validations = [];
+
+	// Private functions
+	var initWizard = function () {
+		// Initialize form wizard
+		_wizard = new KTWizard(_wizardEl, {
+			startStep: 1, // initial active step number
+			clickableSteps: true  // allow step clicking
+		});
+
+		// Validation before going to next page
+		_wizard.on('beforeNext', function (wizard) {
+			// Don't go to the next step yet
+			_wizard.stop();
+
+			// Validate form
+			var validator = _validations[wizard.getStep() - 1]; // get validator for currnt step
+			validator.validate().then(function (status) {
+				if (status == 'Valid') {
+					_wizard.goNext();
+					KTUtil.scrollTop();
+				} else {
+					Swal.fire({
+						text: lng =='en_EN' ? translation.error.en.message : translation.error.fr.message,
+						icon: "error",
+						buttonsStyling: false,
+						confirmButtonText: "Ok",
+						customClass: {
+							confirmButton: "btn font-weight-bold btn-light"
+						}
+					}).then(function () {
+						KTUtil.scrollTop();
+					});
+				}
+			});
+		});
+
+		// Change event
+		_wizard.on('change', function (wizard) {
+			KTUtil.scrollTop();
+		});
+	}
+
+	var initValidation = function () {
+		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
+		// Step 1
+		_validations.push(FormValidation.formValidation(
+			_formEl,
+			{
+				fields: {
+
+                    civility: {
+                        validators: {
+                            notEmpty: { 
+                                message: lng =='en_EN' ? translation.custom.en.message : translation.custom.fr.message
+                            } 
+                        } 
+                    },
+					 
+                    name: {
+                        validators: {
+                            notEmpty: { 
+                                message: lng =='en_EN' ? translation.emptyClientFirstName.en.message : translation.emptyClientFirstName.fr.message
+                            },
+                            stringLength: {
+                                min:1,
+                                max:50,
+                                message: lng =='en_EN' ? translation.clientFirstNameLength.en.message : translation.clientFirstNameLength.fr.message
+                            }
+                        } 
+                    },
+                    lastname: { 
+                        validators: {
+                            notEmpty: {
+                                message: lng =='en_EN' ? translation.emptyClientLasttName.en.message : translation.emptyClientLasttName.fr.message
+                            },
+                            stringLength: {
+                                min:1,
+                                max:50, 
+                                message: lng =='en_EN' ? translation.clientLastNameLength.en.message : translation.clientLastNameLength.fr.message
+                            }
+                        } 
+                    },
+                    
+                    phone: {
+                        validators: {
+                            notEmpty: {
+                                message: lng =='en_EN' ? translation.clientPhoneEmpty.en.message : translation.clientPhoneEmpty.fr.message
+                            }, 
+                        }
+                    },
+                    email: {
+                        validators: {
+                            notEmpty: {
+                                message: lng =='en_EN' ? translation.clientEmailEmpty.en.message : translation.clientEmailEmpty.fr.message
+                            },
+                            emailAddress: {
+                                message: lng =='en_EN' ? translation.clientValidEmail.en.message : translation.clientValidEmail.fr.message
+                            }
+                        }
+                    },
+                    
+                   
+                    
+                    password: {
+                        validators: {
+                            notEmpty: {
+                                message: lng =='en_EN' ? translation.clientPasswordEmpty.en.message : translation.clientPasswordEmpty.fr.message
+                            },
+                            stringLength: {
+                                min:8,
+                                max:75,
+                                message: lng =='en_EN' ? translation.clientValidPassword.en.message : translation.clientValidPassword.fr.message
+                            }
+                        }
+                    }
+                  
+                    
+					
+				},
+				plugins: {
+					trigger: new FormValidation.plugins.Trigger(),
+					bootstrap: new FormValidation.plugins.Bootstrap()
+				}
+			}
+		));
+
+		// Step 2
+		_validations.push(FormValidation.formValidation(
+			_formEl,
+			{
+				fields: {
+
+
+
+                    
+                             "FonctionOccupation": {
+                                    validators: { 
+                                        notEmpty: {
+                                            message: lng =='en_EN' ? translation.custom.en.message : translation.custom.fr.message
+                                        },  
+                                    }
+                                },
+
+                                "companyEtablisment": {
+                                    validators: {
+                                         
+                                        notEmpty: {
+                                            message: lng =='en_EN' ? translation.custom.en.message : translation.custom.fr.message
+                                        },  
+                                    }
+                                },
+                                "city": {
+                                    validators: { 
+                                        notEmpty: {
+                                            message: lng =='en_EN' ? translation.custom.en.message : translation.custom.fr.message
+                                        }, 
+ 
+                                    }
+                                },
+                                "FonctionOccupation": {
+                                    validators: { 
+                                        notEmpty: {
+                                            message: lng =='en_EN' ? translation.custom.en.message : translation.custom.fr.message
+                                        }, 
+ 
+                                    }
+                                },
+
+                                activity_sector: {
+                                    validators: {
+                                        notEmpty: {
+                                            message: lng =='en_EN' ? translation.custom.en.message : translation.custom.fr.message
+                                        }
+                                    }
+                                },
+                                my_offer: {
+                                    validators: {
+                                        notEmpty: {
+                                            message: lng =='en_EN' ? translation.custom.en.message : translation.custom.fr.message
+                                        }
+                                    }
+                                },
+                                my_needs: {
+                                    validators: {
+                                        notEmpty: {
+                                            message: lng =='en_EN' ? translation.custom.en.message : translation.custom.fr.message
+                                        }
+                                    }
+                                },
+
+
+
+					 {% for item in profile.eventAssociatedProfileFeilds %}
+ 
+                                        
+
+                                        "{{item.field.id}}_input": {
+                                            validators: {
+                                                {% if item.field.required == true %}
+                                                notEmpty: {
+                                                    message: lng =='en_EN' ? translation.custom.en.message : translation.custom.fr.message
+                                                }, 
+
+                                                {% endif %}
+                                            }
+                                        },
+                                        
+                                     
+
+                                
+                            {% endfor %}
+				},
+				plugins: {
+					trigger: new FormValidation.plugins.Trigger(),
+					bootstrap: new FormValidation.plugins.Bootstrap()
+				}
+			}
+		));
+
+	}
+
+	return {
+		// public functions
+		init: function () {
+			_wizardEl = KTUtil.getById('kt_wizard_v1');
+			_formEl = KTUtil.getById('kt_form');
+
+			initWizard();
+			initValidation();
+		}
+	};
+}();
+
+jQuery(document).ready(function () {
+	KTWizard1.init();
+});
+
+    </script
+{% endblock %}

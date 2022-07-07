@@ -1,0 +1,573 @@
+{% extends app.user.roles[0] =='ROLE_CLIENT'
+    ? 'base-client.html.twig' 
+    : 'base.html.twig' %}
+
+{% block title %}
+	{% trans into app.session.get('lng') %}Liste de séances{% endtrans %}
+{% endblock %}
+
+{% block body %}
+	<!--begin::Subheader-->
+	<div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+		<div
+			class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+			<!--begin::Info-->
+			<div
+				class="d-flex align-items-center flex-wrap mr-1">
+
+				<!--begin::Page Heading-->
+				<div
+					class="d-flex align-items-baseline flex-wrap mr-5">
+					<!--begin::Page Title-->
+					<h5 class="text-dark font-weight-bold my-1 mr-5">
+						{% trans into app.session.get('lng') %}Configuration{% endtrans %}
+					</h5>
+					<!--end::Page Title-->
+
+					<!--begin::Breadcrumb-->
+					<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+						<li class="breadcrumb-item">
+							<a href="{{ path('index_route') }}" class="text-muted">{% trans into
+                                app.session.get('lng') %}Accueil{% endtrans %}</a>
+						</li> 
+						<li class="breadcrumb-item">
+							<a href="{{ path('events_details',{id:meeting_session.event.id}) }}" class="text-muted">
+                                {{ meeting_session.event.name }} 
+							</a>
+						</li>
+                        <li class="breadcrumb-item">
+							<a href="#" class="text-muted">
+                                {{ meeting_session.theme }} / {{ meeting_session.meet }} 
+							</a>
+						</li>
+                        <li class="breadcrumb-item">
+							<a href="" class="text-muted">{% trans into app.session.get('lng') %}Liste de séances{% endtrans %}
+							</a>
+						</li>
+                        
+					</ul>
+					<!--end::Breadcrumb-->
+
+				</div>
+				<!--end::Page Heading-->
+			</div>
+			<!--end::Info-->
+		</div>
+	</div>
+	<!--end::Subheader-->
+
+
+	<div class="card card-custom pb-5 gutter-b">
+		<!--begin::Header-->
+		<div class="card-header border-0 py-5">
+
+            
+			<h3 class="card-title align-items-start flex-column">
+				<span class="card-label font-weight-bolder text-dark">{% trans into app.session.get('lng') %}Liste de séances{% endtrans %} : {{ meeting_session.theme }} </span>
+                
+			</h3>
+
+
+			<div class="card-toolbar"> 
+
+
+               
+                <form method="post">
+                    <input type="hidden" value="sdsodsudhuisdoqjdqdqdqjh345678767564567" name="toggle_state" />
+
+
+                    {% if room.invitationsState == 0 %}
+                    <button class="btn btn-success font-weight-bolder font-size-sm mr-3" >
+                        <span class="svg-icon svg-icon-md svg-icon-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24"/>
+                                    <path d="M10.9630156,7.5 L11.0475062,7.5 C11.3043819,7.5 11.5194647,7.69464724 11.5450248,7.95024814 L12,12.5 L15.2480695,14.3560397 C15.403857,14.4450611 15.5,14.6107328 15.5,14.7901613 L15.5,15 C15.5,15.2109164 15.3290185,15.3818979 15.1181021,15.3818979 C15.0841582,15.3818979 15.0503659,15.3773725 15.0176181,15.3684413 L10.3986612,14.1087258 C10.1672824,14.0456225 10.0132986,13.8271186 10.0316926,13.5879956 L10.4644883,7.96165175 C10.4845267,7.70115317 10.7017474,7.5 10.9630156,7.5 Z" fill="#000000"/>
+                                    <path d="M7.38979581,2.8349582 C8.65216735,2.29743306 10.0413491,2 11.5,2 C17.2989899,2 22,6.70101013 22,12.5 C22,18.2989899 17.2989899,23 11.5,23 C5.70101013,23 1,18.2989899 1,12.5 C1,11.5151324 1.13559454,10.5619345 1.38913364,9.65805651 L3.31481075,10.1982117 C3.10672013,10.940064 3,11.7119264 3,12.5 C3,17.1944204 6.80557963,21 11.5,21 C16.1944204,21 20,17.1944204 20,12.5 C20,7.80557963 16.1944204,4 11.5,4 C10.54876,4 9.62236069,4.15592757 8.74872191,4.45446326 L9.93948308,5.87355717 C10.0088058,5.95617272 10.0495583,6.05898805 10.05566,6.16666224 C10.0712834,6.4423623 9.86044965,6.67852665 9.5847496,6.69415008 L4.71777931,6.96995273 C4.66931162,6.97269931 4.62070229,6.96837279 4.57348157,6.95710938 C4.30487471,6.89303938 4.13906482,6.62335149 4.20313482,6.35474463 L5.33163823,1.62361064 C5.35654118,1.51920756 5.41437908,1.4255891 5.49660017,1.35659741 C5.7081375,1.17909652 6.0235153,1.2066885 6.2010162,1.41822583 L7.38979581,2.8349582 Z" fill="#000000" opacity="0.3"/>
+                                </g>
+                            </svg>
+                        </span>
+                        {% trans into app.session.get('lng') %}Activer l'envoie des invitations{% endtrans %}</button>
+    
+                    {% else %}
+                    <button class="btn btn-warning font-weight-bolder font-size-sm mr-3" >
+                        <span class="svg-icon svg-icon-md svg-icon-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24"/>
+                                    <path d="M10.9630156,7.5 L11.0475062,7.5 C11.3043819,7.5 11.5194647,7.69464724 11.5450248,7.95024814 L12,12.5 L15.2480695,14.3560397 C15.403857,14.4450611 15.5,14.6107328 15.5,14.7901613 L15.5,15 C15.5,15.2109164 15.3290185,15.3818979 15.1181021,15.3818979 C15.0841582,15.3818979 15.0503659,15.3773725 15.0176181,15.3684413 L10.3986612,14.1087258 C10.1672824,14.0456225 10.0132986,13.8271186 10.0316926,13.5879956 L10.4644883,7.96165175 C10.4845267,7.70115317 10.7017474,7.5 10.9630156,7.5 Z" fill="#000000"/>
+                                    <path d="M7.38979581,2.8349582 C8.65216735,2.29743306 10.0413491,2 11.5,2 C17.2989899,2 22,6.70101013 22,12.5 C22,18.2989899 17.2989899,23 11.5,23 C5.70101013,23 1,18.2989899 1,12.5 C1,11.5151324 1.13559454,10.5619345 1.38913364,9.65805651 L3.31481075,10.1982117 C3.10672013,10.940064 3,11.7119264 3,12.5 C3,17.1944204 6.80557963,21 11.5,21 C16.1944204,21 20,17.1944204 20,12.5 C20,7.80557963 16.1944204,4 11.5,4 C10.54876,4 9.62236069,4.15592757 8.74872191,4.45446326 L9.93948308,5.87355717 C10.0088058,5.95617272 10.0495583,6.05898805 10.05566,6.16666224 C10.0712834,6.4423623 9.86044965,6.67852665 9.5847496,6.69415008 L4.71777931,6.96995273 C4.66931162,6.97269931 4.62070229,6.96837279 4.57348157,6.95710938 C4.30487471,6.89303938 4.13906482,6.62335149 4.20313482,6.35474463 L5.33163823,1.62361064 C5.35654118,1.51920756 5.41437908,1.4255891 5.49660017,1.35659741 C5.7081375,1.17909652 6.0235153,1.2066885 6.2010162,1.41822583 L7.38979581,2.8349582 Z" fill="#000000" opacity="0.3"/>
+                                </g>
+                            </svg>
+                        </span>
+                        {% trans into app.session.get('lng') %}Désactiver l'envoie des invitations{% endtrans %}</button>
+    
+                    {% endif %}
+                </form>
+                
+                <form method="post">
+                    <input type="hidden" value="sdsodsudhuisdoqjdqdqdqjh345678767564567" name="generate-meetings" />
+                    <button class="btn btn-danger font-weight-bolder font-size-sm mr-3">
+                    <span class="svg-icon svg-icon-md svg-icon-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24"/>
+                                <path d="M10.9630156,7.5 L11.0475062,7.5 C11.3043819,7.5 11.5194647,7.69464724 11.5450248,7.95024814 L12,12.5 L15.2480695,14.3560397 C15.403857,14.4450611 15.5,14.6107328 15.5,14.7901613 L15.5,15 C15.5,15.2109164 15.3290185,15.3818979 15.1181021,15.3818979 C15.0841582,15.3818979 15.0503659,15.3773725 15.0176181,15.3684413 L10.3986612,14.1087258 C10.1672824,14.0456225 10.0132986,13.8271186 10.0316926,13.5879956 L10.4644883,7.96165175 C10.4845267,7.70115317 10.7017474,7.5 10.9630156,7.5 Z" fill="#000000"/>
+                                <path d="M7.38979581,2.8349582 C8.65216735,2.29743306 10.0413491,2 11.5,2 C17.2989899,2 22,6.70101013 22,12.5 C22,18.2989899 17.2989899,23 11.5,23 C5.70101013,23 1,18.2989899 1,12.5 C1,11.5151324 1.13559454,10.5619345 1.38913364,9.65805651 L3.31481075,10.1982117 C3.10672013,10.940064 3,11.7119264 3,12.5 C3,17.1944204 6.80557963,21 11.5,21 C16.1944204,21 20,17.1944204 20,12.5 C20,7.80557963 16.1944204,4 11.5,4 C10.54876,4 9.62236069,4.15592757 8.74872191,4.45446326 L9.93948308,5.87355717 C10.0088058,5.95617272 10.0495583,6.05898805 10.05566,6.16666224 C10.0712834,6.4423623 9.86044965,6.67852665 9.5847496,6.69415008 L4.71777931,6.96995273 C4.66931162,6.97269931 4.62070229,6.96837279 4.57348157,6.95710938 C4.30487471,6.89303938 4.13906482,6.62335149 4.20313482,6.35474463 L5.33163823,1.62361064 C5.35654118,1.51920756 5.41437908,1.4255891 5.49660017,1.35659741 C5.7081375,1.17909652 6.0235153,1.2066885 6.2010162,1.41822583 L7.38979581,2.8349582 Z" fill="#000000" opacity="0.3"/>
+                            </g>
+                        </svg>
+                    </span>
+                    {% trans into app.session.get('lng') %}Générer les réunions pour les participants{% endtrans %}</button>
+                </form>
+
+
+
+
+               
+                <a class="btn btn-success font-weight-bolder font-size-sm" href="{{ path('meeting_sessions_new',{ id:meeting_session.id}) }}">
+                <span class="svg-icon svg-icon-md svg-icon-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24"/>
+                            <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+                            <path d="M11,11 L11,7 C11,6.44771525 11.4477153,6 12,6 C12.5522847,6 13,6.44771525 13,7 L13,11 L17,11 C17.5522847,11 18,11.4477153 18,12 C18,12.5522847 17.5522847,13 17,13 L13,13 L13,17 C13,17.5522847 12.5522847,18 12,18 C11.4477153,18 11,17.5522847 11,17 L11,13 L7,13 C6.44771525,13 6,12.5522847 6,12 C6,11.4477153 6.44771525,11 7,11 L11,11 Z" fill="#000000"/>
+                        </g>
+                    </svg>
+                </span>
+                {% trans into app.session.get('lng') %}Ajouter{% endtrans %}</a>
+			</div>
+		</div>
+		<!--end::Header-->
+
+		<!--begin::Body-->
+		<div class="card-body py-0">
+			<!--begin::Table-->
+			<div class="table-responsive"> 
+                  	<table class="datatable-bordered datatable-head-custom datatable-table general_datatable" >
+                        <thead>
+                            <tr class="text-left">
+
+               
+
+                                <th data-field="first">#</th>
+                                <th>{% trans into app.session.get('lng') %}Lieu de l'événement{% endtrans %}</th>
+                                <th>{% trans into app.session.get('lng') %}Nombre de minutes par RDV{% endtrans %}</th>
+                                <th>{% trans into app.session.get('lng') %}Interprétation{% endtrans %}</th>
+                                <th>{% trans into app.session.get('lng') %}Nombre des Tables{% endtrans %}</th>
+                                <th>{% trans into app.session.get('lng') %}Rotation{% endtrans %}</th>
+                                <th>{% trans into app.session.get('lng') %}Matchmaking{% endtrans %}</th>
+                                 <th>{% trans into app.session.get('lng') %}Par qui ?{% endtrans %}</th> 
+                                <th  data-field="last" class="pr-0 text-right">actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for meeting_session in meeting_sessions %}
+                            <tr>
+                                <td>{{ loop.index }} </td>
+                                <td>
+                                <p>
+                                    <strong>{{ meeting_session.place }}</strong> <br>
+                                    <small class="text-muted">{{ meeting_session.dateAndTime ? meeting_session.dateAndTime|date('Y-m-d H:i:s') : '' }}</small>
+                                </p>
+                                </td>
+                                
+                                <td>
+                                    <span class="badge bg-light-info text-info">{{ meeting_session.minutesPerRDV }} minute(s)</span>
+                                </td>
+                                <td> 
+
+                                    {% if meeting_session.interpretation == true %}
+                                        {% if  app.session.get('lng') == 'en_EN' %}
+                                             <span class="badge bg-light-info text-info">with interpretation</span>
+                                        {% else %}
+                                            <span class="badge bg-light-info text-info">avec interprétation</span>
+                                        {% endif %}
+                                    {% else %}
+                                          {% if  app.session.get('lng') == 'en_EN' %}
+                                             <span class="badge bg-light-info text-info">without interpretation</span>
+                                        {% else %}
+                                            <span class="badge bg-light-info text-info">sans interprétation</span>
+                                        {% endif %}
+                                    {% endif %}
+                                
+                                </td>
+                                <td>
+                                  <span class="badge bg-light-info text-info">{{ meeting_session.nbrTablesPerSession }} table(s)</span>
+                                </td>
+                                <td>
+                                
+
+
+                                {% if  meeting_session.tableRotation == 0 %}  
+
+                                        {% if  app.session.get('lng') == 'en_EN' %}
+                                             <span class="badge bg-light-info text-info">fixed</span>
+                                        {% else %}
+                                            <span class="badge bg-light-info text-info">fix</span>
+                                        {% endif %}
+                                    {% else %}
+                                          {% if  app.session.get('lng') == 'en_EN' %}
+                                             <span class="badge bg-light-info text-info">rotating</span>
+                                        {% else %}
+                                            <span class="badge bg-light-info text-info">tournante</span>
+                                        {% endif %}
+                                    {% endif %}
+                                
+                                </td>
+
+
+
+
+
+                                <td> 
+                                
+                                {% if  meeting_session.matchmaking == 0 %}   
+
+                                        {% if  app.session.get('lng') == 'en_EN' %}
+                                             <span class="badge bg-light-info text-info">Intelligent</span>
+                                        {% else %}
+                                            <span class="badge bg-light-info text-info">Intelligent</span>
+                                        {% endif %}
+                                    {% else %}
+                                          {% if  app.session.get('lng') == 'en_EN' %}
+                                             <span class="badge bg-light-info text-info">Manual</span>
+                                        {% else %}
+                                            <span class="badge bg-light-info text-info">Manuel</span>
+                                        {% endif %}
+                                    {% endif %}
+                                
+                                </td>
+                                
+                                </td>
+                                <td>  
+
+                                    {% if  meeting_session.byWho == 0 %}   
+
+                                        {% if  app.session.get('lng') == 'en_EN' %}
+                                             <span class="badge bg-light-info text-info">By participant</span>
+                                        {% else %}
+                                            <span class="badge bg-light-info text-info">Par le participant</span>
+                                        {% endif %}
+                                    {% endif %}
+
+                                   {% if  meeting_session.byWho == 1 %} 
+                                          {% if  app.session.get('lng') == 'en_EN' %}
+                                             <span class="badge bg-light-info text-info">By the organizer</span>
+                                        {% else %}
+                                            <span class="badge bg-light-info text-info">Par l'organisateur</span>
+                                        {% endif %}
+                                    {% endif %}
+
+                                    {% if  meeting_session.byWho == 2 %} 
+                                          {% if  app.session.get('lng') == 'en_EN' %}
+                                             <span class="badge bg-light-info text-info">both</span>
+                                        {% else %}
+                                            <span class="badge bg-light-info text-info">Par les deux</span>
+                                        {% endif %}
+                                    {% endif %}
+ 
+                                
+                                
+                                </td>
+                                <td>
+                                
+                                
+ 
+
+
+
+
+
+                                                <!--<a href="{{ path('meeting_sessions_show',{id:meeting_session.id}) }}" class=" btn-icon  btn-hover-primary btn-sm mx-3">
+                                                    <span class="svg-icon svg-icon-md svg-icon-primary">
+                                                       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                <rect x="0" y="0" width="24" height="24"/>
+                                                                <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+                                                                <path d="M14.5,11 C15.0522847,11 15.5,11.4477153 15.5,12 L15.5,15 C15.5,15.5522847 15.0522847,16 14.5,16 L9.5,16 C8.94771525,16 8.5,15.5522847 8.5,15 L8.5,12 C8.5,11.4477153 8.94771525,11 9.5,11 L9.5,10.5 C9.5,9.11928813 10.6192881,8 12,8 C13.3807119,8 14.5,9.11928813 14.5,10.5 L14.5,11 Z M12,9 C11.1715729,9 10.5,9.67157288 10.5,10.5 L10.5,11 L13.5,11 L13.5,10.5 C13.5,9.67157288 12.8284271,9 12,9 Z" fill="#000000"/>
+                                                            </g>
+                                                        </svg> 
+                                                    </span>
+                                                </a>-->
+
+
+
+
+                                    <a href="{{ path('meeting_sessions_edit',{id:meeting_session.id}) }}" class=" btn-icon  btn-hover-primary btn-sm mx-3">
+                                                    <span class="svg-icon svg-icon-md svg-icon-primary">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewbox="0 0 24 24" version="1.1">
+                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                <rect x="0" y="0" width="24" height="24"></rect>
+                                                                <path d="M12.2674799,18.2323597 L12.0084872,5.45852451 C12.0004303,5.06114792 12.1504154,4.6768183 12.4255037,4.38993949 L15.0030167,1.70195304 L17.5910752,4.40093695 C17.8599071,4.6812911 18.0095067,5.05499603 18.0083938,5.44341307 L17.9718262,18.2062508 C17.9694575,19.0329966 17.2985816,19.701953 16.4718324,19.701953 L13.7671717,19.701953 C12.9505952,19.701953 12.2840328,19.0487684 12.2674799,18.2323597 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.701953, 10.701953) rotate(-135.000000) translate(-14.701953, -10.701953) "></path>
+                                                                <path d="M12.9,2 C13.4522847,2 13.9,2.44771525 13.9,3 C13.9,3.55228475 13.4522847,4 12.9,4 L6,4 C4.8954305,4 4,4.8954305 4,6 L4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 L2,6 C2,3.790861 3.790861,2 6,2 L12.9,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                                            </g>
+                                                        </svg><!--end::Svg Icon-->
+                                                    </span>
+                                                </a>
+
+
+
+                                </td>
+                            </tr>
+                            
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+
+
+			</div>
+			<!--end::Table-->
+		</div>
+		<!--end::Body-->
+	</div>
+
+
+
+
+    <div class="card card-custom card-stretch gutter-b">
+		<!--begin::Header-->
+		<div class="card-header border-0 py-5">
+			<h3 class="card-title align-items-start flex-column">
+				<span class="card-label font-weight-bolder text-dark">{% trans into app.session.get('lng') %}Liste de rendez-vous{% endtrans %} : {{ meeting_session.theme }}</span> 
+			</h3>
+        </div>
+
+
+        <div class="card-body">
+            
+
+                {% if error_meetings != null %}
+                    <div class="alert alert-danger mt-4">
+                        {{ error_meetings }}
+                    </div>
+                {% endif %}
+                
+<form>
+                <div class="row" >
+
+
+ 
+                        <div class="col-sm-2 mb-3">
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Recherche par heure{% endtrans %}</label>
+                                <input id="time-filter" type="time" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 mb-3">
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Recherche par date{% endtrans %}</label>
+                                <input id="date-filter" type="date" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3 mb-3">
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Recherche par table{% endtrans %}</label>
+                                <input id="table-filter" type="number" class="form-control" value=""/>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-4 mb-3">
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Recherche par participant{% endtrans %}</label>
+                                <select id="participant-filter"   class="form-control" >
+                                    <option value="" >{% trans into app.session.get('lng') %}choisir un participant{% endtrans %}</option>
+                                       {% for p in participants %}
+                                        <option value="{{p.id}}" > {{ p.user.firstname }} {{ p.user.lastname }}</option>
+                                    
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+ 
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>{% trans into app.session.get('lng') %}Recherche par mots clés{% endtrans %}</label>
+                                <input placeholder="{% trans into app.session.get('lng') %}Recherche par mots clés{% endtrans %}" id="search-engine" type="search" class="form-control" />
+                            </div>
+                        </div>
+                    
+
+
+
+                        <div class="col-sm-12 mb-3">
+                            <div class="form-group">
+                                <button type="button" id="search-btn" class="btn btn-success">{% trans into app.session.get('lng') %}Chercher{% endtrans %}</button>
+                           
+                                
+
+                                <button type="reset" id="reset-btn" class="btn btn-danger">{% trans into app.session.get('lng') %}réinitialiser{% endtrans %}</button>
+                            </div>
+                        </div>
+                        
+
+                   
+
+                </div>
+      </form>
+
+
+                {% for p in participants %}
+
+                    <div class="participant-item" participant-filter="{{ p.id }}">
+                        {% if p.sessionMeetings | length != 0 %}
+
+                        
+                            <div class="d-flex justify-content-between">
+                                <div class="mr-2">
+                                    <p><strong>{{ p.user.firstname }} {{ p.user.lastname }}</strong>  </p> 
+                                </div>
+
+                                <div>
+                                    <a class="btn btn-info btn-sm mr-3" href="{{ path('participant_printer_route',{participant:p.id,room:room.id}) }}">{% trans into app.session.get('lng') %}imprimer{% endtrans %}</a>
+    
+                                    <a  class="btn btn-success btn-sm" target="_blank" href="{{ path('participant_csv_route',{participant:p.id,room:room.id}) }}" >{% trans into app.session.get('lng') %}Télécharger CSV{% endtrans %}</a>
+    
+                                </div>
+                                
+                            </div>
+
+                            <div class="mt-5">
+                                   <table class="table">
+
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>{% trans into app.session.get('lng') %}Horaire{% endtrans %}</th>
+                                            <th>{% trans into app.session.get('lng') %}Date{% endtrans %}</th>
+                                            <th>{% trans into app.session.get('lng') %}Nom et prénom{% endtrans %}</th>
+                                            <th>{% trans into app.session.get('lng') %}Email{% endtrans %}</th>
+                                            <th>{% trans into app.session.get('lng') %}Télephone{% endtrans %}</th>
+                                            <th>{% trans into app.session.get('lng') %}Table{% endtrans %}</th>
+                                            <th>{% trans into app.session.get('lng') %}Session{% endtrans %}</th>
+                                            <th>{% trans into app.session.get('lng') %}Actions{% endtrans %}</th>
+                                            
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        {% for item in p.sessionMeetings | sort((a, b) => a.startDate <=> b.startDate) %}
+
+
+                                        {% if item.session.room.id == meeting_session.id %}
+
+                                            <tr class="search-time-line timeline-item align-items-start" session-name="{{ item.session.name }}" participant-name="{{ item.second.user.firstname }} {{ item.second.user.lastname }}"  time-filter="{{ item.startDate | date("H:i") }}" date-filter="{{ item.startDate | date("Y-m-d") }}" table-filter="{{item.tableNumber}}">
+                                                <!--begin::Item-->
+                                                
+                                                    <td>{{ loop.index }}</td>
+                                                    <td class=" font-weight-bolder text-dark-75 font-size-lg">{{ item.startDate | date("g:i a") }}</td>
+
+                                                    <td>
+                                                        <span class="font-weight-bolder text-dark-75 font-size-lg">{{ item.startDate | date("m/d/Y ") }}</span>   
+        
+                                                    </td>
+
+
+                                                    <td>{{ item.second.user.firstname }} {{ item.second.user.lastname }}</td>
+                                                    
+                                                    <td>{{ item.second.user.email }}</td>
+                                                    <td>{{ item.second.user.phone }}</td>
+                                                    
+                                                    
+        
+                                                    
+                                                   
+                                                    
+
+                                                    <td><span class="badge border">Table N°{{ item.tableNumber }}</span></td>
+                                                    <td>
+                                                         
+                                                            <span class="badge border">{{ item.session.name }}</span> 
+                                                       
+                                                    </td>
+
+
+                                                    <td>
+                                                         
+                                                        <div class="d-flex">
+                                                            <div class="form-group mr-3">
+                                                                <label for="">{% trans into app.session.get('lng') %}Réalisation{% endtrans %}</label>
+                                                                <select id-session="{{ item.id }}" class="update-realisation form-control">
+                                                                    <option {% if item.presence == 0 %} selected {% endif %} value="0">{% trans into app.session.get('lng') %}Non{% endtrans %}</option> 
+                                                                    <option {% if item.presence == 1 %} selected {% endif %}  value="1">{% trans into app.session.get('lng') %}Oui{% endtrans %}</option>
+                                                                    
+                                                                </select>
+                                                            </div>
+
+
+                                                            <div class="form-group">
+                                                                <label for="">{% trans into app.session.get('lng') %}Présence{% endtrans %}</label>
+                                                                <select id-session="{{ item.id }}"  class="form-control update-presence">
+                                                                    <option {% if item.presence == 0 %} selected {% endif %} value="0">{% trans into app.session.get('lng') %}N'est pas encore arrivé{% endtrans %}</option>
+                                                                    <option {% if item.presence == 1 %} selected {% endif %} value="1">{% trans into app.session.get('lng') %}Il est présent{% endtrans %}</option>
+                                                                    <option {% if item.presence == 2 %} selected {% endif %} value="2">{% trans into app.session.get('lng') %}Retardataire{% endtrans %}</option>
+                                                                    <option {% if item.presence == 3 %} selected {% endif %} value="3">{% trans into app.session.get('lng') %}Il a annulé{% endtrans %}</option> 
+                                                                    
+                                                                </select>
+                                                            </div>
+
+
+                                                        </div>
+                                                   
+                                                    </td>
+
+
+                                                     
+                                                </tr>
+                                            <!--end::Item--> 
+                                        {% endif %}
+                                        
+                                    
+                                    {% endfor %}
+
+
+                                    </tbody>
+                                   </table>
+
+                                        
+                            </div>
+                            
+                        
+
+                        <hr>
+                    
+                    {% endif %}
+                    </div>
+                
+
+                
+                    
+                {% endfor %}
+                
+
+                
+
+
+
+                
+        </div>
+
+    </div>
+
+
+	
+{% endblock %}
+
+
+
+{% block javascripts %}
+
+{{ parent() }}
+
+
+<script src="/assets/js/events/meetings.js" ></script>
+
+ 
+
+{% endblock %}
+
+
+
+

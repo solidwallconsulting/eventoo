@@ -1,0 +1,174 @@
+{% extends 'base-app.html.twig' %}
+
+{% block title %}Eventoo | {{ event.name }}{% endblock %}
+
+
+{% block body %}
+    <img src="{{event.photoURL}}" class="app-event-cover" alt="" >
+
+    <div class="container-fluid  ">
+        <div class="card">
+            
+
+            <div class="card-body">
+
+                <div class="mb-4 text-center">
+                    <img src="{{event.logoURL}}" class="app-event-logo rounded" alt="" >
+                </div>
+             
+                <div class="mb-4 text-center">
+                    <h1 class="app-event-title">{{ event.name }}</h1>
+                </div>
+        
+        
+                <div class="mb-4 text-center app-event-description" >
+                    {{ event.description | raw }}
+                </div>
+
+                <div class="mb-4">
+                    {{ event.steamingLINK | raw }}
+                </div>
+
+                <h3 class="app-event-sub-title text-center">{% trans into app.session.get('lng') %}Sponsors{% endtrans %}</h3>
+                      
+
+ 
+                <section class="event-gray-section">
+                    <div class="mb-4 text-center">
+                        <div class="owl-carousel sponsors-carrousel">
+                            {% for item in event.sponsors %}
+                                <div class="carrousel-logo-item ">
+                                    <img class="w-100 rounded mb-4" src="{{ item.logoURL }}"  />
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                </section>
+
+
+                <h3 class="app-event-sub-title text-center">{% trans into app.session.get('lng') %}Exposants{% endtrans %}</h3>
+                       
+
+
+                <section class="event-gray-section">
+                    <div class="mb-4 text-center">
+                        
+
+                        <div class="owl-carousel exposants-carrousel">
+                            {% for item in event.exposers %}
+                                <div class="carrousel-logo-item">
+                                    <img class="w-100 rounded mb-4" src="{{ item.logoURL }}"  />
+                                </div>
+                            {% endfor %}
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+                
+                
+                <h3  class="app-event-sub-title text-center" >{% trans into app.session.get('lng') %}Participants{% endtrans %}</h3>
+
+
+
+                <section class="event-gray-section-sm">
+                    <div class="mb-4 text-center">
+                       
+                        <div class="participants-list owl-carousel participants-carrousel ">
+                            {% for item in participants %}
+
+                            <div> 
+                                <!--begin::Card-->
+                                <div
+                                    class="card card-custom gutter-b card-stretch">
+                                    <!--begin::Body-->
+                                    <div
+                                        class="card-body pt-4">
+                                        <!--begin::Toolbar-->
+                                        <div class="d-flex justify-content-end">
+                                             
+                                        </div>
+                                        <!--end::Toolbar-->
+                                        <!--begin::User-->
+                                        <div
+                                            class="  mb-7">
+                                            <!--begin::Pic-->
+                                            <div  class="text-center">
+                                                <!--begin::Pic-->
+                                                <div class=" mr-4 mt-lg-0 mt-3">
+                                                    <div class="symbol symbol-circle symbol-lg-95">
+                                                        <img src="{{item.user.photoURL}}" alt="image">
+                                                    </div> 
+                                                </div>
+                                                <!--end::Pic-->
+                                                <!--begin::Title-->
+                                                <div class="d-flex flex-column">
+                                                    <h3 href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">{{item.user.firstname}}
+                                                        {{item.user.lastname}}</h3>
+                                                    <span class="text-muted font-weight-bold">{{item.user.functionOccupation}}</span> 
+                                                    <p class="mt-3">
+                                                        <strong> {{ item.user.companyEtablishment }}</strong>
+                                                     </p>
+                                                </div>
+                                                <!--end::Title-->
+                                            </div>
+                                            <!--end::Title-->
+                                        </div>
+                                        <!--end::User-->
+        
+                                        <!--begin::Info-->
+                                        <div class="mb-7">
+                                            
+
+
+                                             <div class="d-flex justify-content-center">
+                                                 <span class="badge border mr-2 pt-3">{{item.profile.label}}</span>
+                                                 <span class="badge border "><img class="w-20px rounded-sm d-inline-block mr-3" src="{{item.user.country.icon}}" alt="">  {{item.user.country.name}}</span>
+                                                 
+                                             </div>
+                                        </div>
+                                        <!--end::Info-->  
+
+                                    </div>
+                                    <!--end::Body-->
+                                </div>
+                                <!--end::Card-->
+                            </div> 
+                            
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
+
+
+                
+
+
+ 
+
+
+
+
+                 
+                
+
+                
+            </div>
+        </div>
+    </div>
+ 
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+
+    <script src="{{ asset('/assets/js/app/home.js') }}"></script>
+{% endblock %}

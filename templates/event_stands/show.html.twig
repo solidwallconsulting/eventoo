@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EventStands{% endblock %}
+
+{% block body %}
+    <h1>EventStands</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ event_stand.id }}</td>
+            </tr>
+            <tr>
+                <th>Providername</th>
+                <td>{{ event_stand.providername }}</td>
+            </tr>
+            <tr>
+                <th>ProviderEmail</th>
+                <td>{{ event_stand.providerEmail }}</td>
+            </tr>
+            <tr>
+                <th>ProviderTitle</th>
+                <td>{{ event_stand.providerTitle }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ event_stand.description }}</td>
+            </tr>
+            <tr>
+                <th>Tags</th>
+                <td>{{ event_stand.tags ? event_stand.tags|join(', ') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('event_stands_index') }}">back to list</a>
+
+    <a href="{{ path('event_stands_edit', {'id': event_stand.id}) }}">edit</a>
+
+    {{ include('event_stands/_delete_form.html.twig') }}
+{% endblock %}

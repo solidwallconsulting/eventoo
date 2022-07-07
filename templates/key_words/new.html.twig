@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EventRooms{% endblock %}
+
+{% block body %}
+    <h1>Create new EventRooms</h1>
+
+    {{ include('key_words/_form.html.twig') }}
+
+    <a href="{{ path('key_words_index') }}">back to list</a>
+{% endblock %}

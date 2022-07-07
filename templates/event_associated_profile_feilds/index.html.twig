@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EventAssociatedProfileFeilds index{% endblock %}
+
+{% block body %}
+    <h1>EventAssociatedProfileFeilds index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for event_associated_profile_feild in event_associated_profile_feilds %}
+            <tr>
+                <td>{{ event_associated_profile_feild.id }}</td>
+                <td>
+                    <a href="{{ path('event_associated_profile_feilds_show', {'id': event_associated_profile_feild.id}) }}">show</a>
+                    <a href="{{ path('event_associated_profile_feilds_edit', {'id': event_associated_profile_feild.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('event_associated_profile_feilds_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New RoomAccessProfiles{% endblock %}
+
+{% block body %}
+    <h1>Create new RoomAccessProfiles</h1>
+
+    {{ include('room_access_profiles/_form.html.twig') }}
+
+    <a href="{{ path('room_access_profiles_index') }}">back to list</a>
+{% endblock %}

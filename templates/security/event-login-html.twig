@@ -1,0 +1,162 @@
+{% extends 'base-login.html.twig' %}
+
+{% block title %}Eventoo{% endblock %}
+
+
+{% block stylesheets %}
+{{ parent() }}
+
+ 
+{% endblock %}
+
+ 
+{% block body %}
+<span id="translation" trans="{{app.session.get('lng')}}"></span>
+
+    	<!--begin::Main-->
+	<div class="d-flex flex-column flex-root">
+
+       
+
+		<!--begin::Login-->
+<div class="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white" id="kt_login">
+    <!--begin::Aside-->
+    <div class="login-aside login-aside-event d-flex flex-column flex-row-auto" style="background-color: #F2C98A; background-image: url({{event.intoTheEventPhotoURL}})">
+        <!--begin::Aside Top-->
+        <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
+            <!--begin::Aside header-->
+            
+            <!--end::Aside header-->
+
+            <!--begin::Aside title-->
+             
+            <!--end::Aside title-->
+        </div>
+        <!--end::Aside Top-->
+
+        <!--begin::Aside Bottom-->
+        <div class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center" style="background-image: url(assets/media/svg/illustrations/login-visual-1.svg)"></div>
+        <!--end::Aside Bottom-->
+    </div>
+    <!--begin::Aside-->
+
+    <!--begin::Content-->
+    <div class="login-content flex-row-fluid d-flex flex-column justify-content-center position-relative overflow-hidden p-7 mx-auto">
+
+
+    <div class="d-flex flex-column-fluid flex-center">
+            <!--begin::Signin-->
+                
+
+            <div class="login-form login-signin">
+                <!--begin::Form-->
+                <form method="post" class="form fv-plugins-bootstrap fv-plugins-framework" novalidate="novalidate" id="kt_login_signin_form">
+                        <input type="hidden" name="_csrf_token"  value="{{ csrf_token('authenticate') }}"  >
+    
+                    
+                    <!--begin::Title-->
+                    <div class="pb-13 pt-lg-0 pt-5">
+                        <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">{{event.name}}</h3>
+                        <span class="text-muted font-weight-bold font-size-h4">{% trans into app.session.get('lng')   %}Vous n'avez pas de compte ?{% endtrans %}  <a href="#" id="kt_login_signup" class="text-primary font-weight-bolder">{% trans into app.session.get('lng')   %}créez-en un maintenant{% endtrans %}</a></span>
+                    </div>
+                    <!--begin::Title-->
+
+                    <!--begin::Form group-->
+                    <div class="form-group fv-plugins-icon-container">
+                        <label class="font-size-h6 font-weight-bolder text-dark">{% trans into app.session.get('lng')   %}Email{% endtrans %}</label>
+                        <input  class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="text" value="{{ last_username }}" name="email">
+                    <div class="fv-plugins-message-container"></div></div>
+                    <!--end::Form group-->
+
+                    <!--begin::Form group-->
+                    <div class="form-group fv-plugins-icon-container">
+                        <div class="d-flex justify-content-between mt-n5">
+                            <label class="font-size-h6 font-weight-bolder text-dark pt-5">{% trans into app.session.get('lng')   %}Mot de passe{% endtrans %}</label>
+
+                            <a href="javascript:;" class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5" id="kt_login_forgot">
+        						{% trans into app.session.get('lng')   %}Mot de passe oublié ?{% endtrans %}
+        					</a>
+                        </div>
+
+                        <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="password" name="password" autocomplete="off">
+                    <div class="fv-plugins-message-container"></div></div>
+                    <!--end::Form group-->
+
+                    <!--begin::Action-->
+                    <div class="pb-lg-0 pb-5">
+                        <button type="submit" id="kt_login_signin_submit" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">
+                        {% trans into app.session.get('lng')   %}Se connecter{% endtrans %}</button>
+
+                         
+                    </div>
+                    <!--end::Action-->
+                <input type="hidden"><div></div>
+                
+                </form>
+
+
+
+                
+
+                <div id="sign-up-now-bloc" style="display: none" >
+                    <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">{% trans into app.session.get('lng')   %}Je suis un {% endtrans %}</h3>
+                    
+        
+                    <p  class="text-muted font-weight-bold font-size-h4">
+                        {% trans into app.session.get('lng')   %}Afin de poursuivre la création de votre compte, veuillez choisir l'un des profils ci-dessous{% endtrans %}
+                    </p>
+                <hr/>
+
+                {% for item in event.eventProfiles %}
+                    
+                        <h3 class="mb-7"><a href="/event-create-account/{{item.uniqueID}}"> {{item.label}}</a></h3>
+                {% endfor %}
+
+                {% if error %}
+                    <div class="alert alert-danger mt-3">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                </div>
+
+                <!--end::Form-->
+            </div>
+            <!--end::Signin-->
+
+            <!--begin::Signup-->
+            
+            <!--end::Signup-->
+
+            <!--begin::Forgot-->
+            
+            <!--end::Forgot-->
+        </div>
+
+
+    </div>
+    <!--end::Content-->
+</div>
+<!--end::Login-->
+	</div>
+<!--end::Main-->
+
+
+{% endblock %}
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function(){
+            $("#kt_login_signup").click(function(){
+                $("#kt_login_signin_form").hide();
+
+                $("#sign-up-now-bloc").fadeIn();
+            })
+        })
+    
+    </script>
+
+{% endblock %}
+
+ 

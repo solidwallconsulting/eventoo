@@ -1,0 +1,81 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : 127.0.0.1
+-- Généré le : mer. 15 déc. 2021 à 15:18
+-- Version du serveur : 10.4.20-MariaDB
+-- Version de PHP : 7.4.22
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données : `afrk50`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `social_media`
+--
+
+CREATE TABLE `social_media` (
+  `id` int(11) NOT NULL,
+  `company_id` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `social_media`
+--
+
+INSERT INTO `social_media` (`id`, `company_id`, `name`, `value`) VALUES
+(2, 6, 'Facebook', 'Facebook'),
+(3, 6, 'Twitter', 'Twitter'),
+(22, 1, 'Facebook', 'https://www.facebook.com/fifi'),
+(23, 1, 'Reddit', 'https://www.twitter.com/');
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `social_media`
+--
+ALTER TABLE `social_media`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_20BC159E979B1AD6` (`company_id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `social_media`
+--
+ALTER TABLE `social_media`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `social_media`
+--
+ALTER TABLE `social_media`
+  ADD CONSTRAINT `FK_20BC159E979B1AD6` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

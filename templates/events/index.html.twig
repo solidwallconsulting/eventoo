@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Events index{% endblock %}
+
+{% block body %}
+    <h1>Events index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>AccessType</th>
+                <th>TotalSubscribersNumber</th>
+                <th>EventsLengthInDays</th>
+                <th>StartDate</th>
+                <th>EndDate</th>
+                <th>TypeZone</th>
+                <th>Location</th>
+                <th>EventAccessibility</th>
+                <th>EventLng</th>
+                <th>WillBeAvailableForNMonths</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for event in events %}
+            <tr>
+                <td>{{ event.id }}</td>
+                <td>{{ event.name }}</td>
+                <td>{{ event.type }}</td>
+                <td>{{ event.accessType }}</td>
+                <td>{{ event.totalSubscribersNumber }}</td>
+                <td>{{ event.eventsLengthInDays }}</td>
+                <td>{{ event.startDate ? event.startDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ event.endDate ? event.endDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ event.typeZone }}</td>
+                <td>{{ event.location }}</td>
+                <td>{{ event.eventAccessibility }}</td>
+                <td>{{ event.eventLng }}</td>
+                <td>{{ event.willBeAvailableForNMonths }}</td>
+                <td>
+                    <a href="{{ path('events_show', {'id': event.id}) }}">show</a>
+                    <a href="{{ path('events_edit', {'id': event.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('events_new') }}">Create new</a>
+{% endblock %}

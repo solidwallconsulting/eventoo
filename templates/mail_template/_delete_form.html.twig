@@ -1,0 +1,5 @@
+<hr>
+<form method="post" id="delete-mail-form"  action="{{ path('mail_template_delete', {'id': mail_template.id}) }}" >
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ mail_template.id) }}">
+    <button class="btn btn-danger" type="button" id="delete-mail-btn">{% trans into app.session.get('lng') %}Supprimer{% endtrans %}</button>
+</form>

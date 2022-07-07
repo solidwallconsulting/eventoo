@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EventStandMesures{% endblock %}
+
+{% block body %}
+    <h1>EventStandMesures</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ event_stand_mesure.id }}</td>
+            </tr>
+            <tr>
+                <th>Meusure</th>
+                <td>{{ event_stand_mesure.meusure }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('event_stand_mesures_index') }}">back to list</a>
+
+    <a href="{{ path('event_stand_mesures_edit', {'id': event_stand_mesure.id}) }}">edit</a>
+
+    {{ include('event_stand_mesures/_delete_form.html.twig') }}
+{% endblock %}

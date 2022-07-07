@@ -1,0 +1,296 @@
+
+{% extends app.user.roles[0] =='ROLE_CLIENT'
+    ? 'base-client.html.twig' 
+    : 'base.html.twig' %}
+
+{% block title %}Eventoo{% endblock %}
+
+{% block body %}
+
+
+<!--begin::Content-->
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Subheader-->
+    <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-1">
+
+                <!--begin::Page Heading-->
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <!--begin::Page Title-->
+                    <h5 class="text-dark font-weight-bold my-1 mr-5"> {% trans into app.session.get('lng')
+                        %}Organisateurs{%
+                        endtrans %} </h5>
+                    <!--end::Page Title-->
+
+                    <!--begin::Breadcrumb-->
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                         <li class="breadcrumb-item">
+                                <a href="/" class="text-muted">{% trans into
+                                    app.session.get('lng') %}Accueil{% endtrans %}</a>
+                            </li>
+                             
+                         
+                        <li class="breadcrumb-item">
+                            <a href="" class="text-muted">{{ event.name }}</a>
+                        </li>
+
+                    </ul>
+                    <!--end::Breadcrumb-->
+                </div>
+                <!--end::Page Heading-->
+            </div>
+            <!--end::Info-->
+
+            <!--begin::Toolbar-->
+            <div class="d-flex align-items-center">
+
+
+            </div>
+            <!--end::Toolbar-->
+        </div>
+    </div>
+    <!--end::Subheader-->
+
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class=" container ">
+            <!--begin::Card--> 
+
+
+            <div class="card card-custom gutter-b">
+                <div class="card-body">
+                    <!--begin::Details-->
+                    <div class="d-flex mb-9">
+                        <!--begin: Pic-->
+                        <div class="flex-shrink-0 mr-7 mt-lg-0 mt-3">
+                            <div class="symbol symbol-50 symbol-lg-120"> 
+  
+                            </div>
+
+                            <div class="symbol symbol-50 symbol-lg-120 symbol-primary d-none">
+                                <span class="font-size-h3 symbol-label font-weight-boldest">{{event.name | slice(0,2)}}</span>
+                            </div>
+                        </div>
+                        <!--end::Pic-->
+
+                        <!--begin::Info-->
+                        <div class="flex-grow-1">
+                            <!--begin::Title-->
+                            <div class="  mt-1 mb-5">
+                                 
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        {{ form_start(form) }}
+
+                                      
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    {{ form_label(form.themeColor) }} 
+                                                    {{ form_widget(form.themeColor) }} 
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    {{ form_label(form.textThemeColor) }} 
+                                                    {{ form_widget(form.textThemeColor) }} 
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    {{ form_label(form.numberOfSessionTextColor) }} 
+                                                    {{ form_widget(form.numberOfSessionTextColor) }} 
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    {{ form_label(form.numberOfSessionColor) }} 
+                                                    {{ form_widget(form.numberOfSessionColor) }} 
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    {{ form_label(form.chatLinkColor) }} 
+                                                    {{ form_widget(form.chatLinkColor) }} 
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    {{ form_label(form.ExpoTabColor) }} 
+                                                    {{ form_widget(form.ExpoTabColor) }} 
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    {{ form_label(form.agendaMenuColor) }} 
+                                                    {{ form_widget(form.agendaMenuColor) }} 
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    {{ form_label(form.tabFontColor) }} 
+                                                    {{ form_widget(form.tabFontColor) }} 
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    {{ form_label(form.tabColor) }} 
+                                                    {{ form_widget(form.tabColor) }} 
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                 
+                                                
+                                            </div>
+                                        </div>
+
+
+                                        <hr>
+
+                                       
+                                       
+  
+                                        <img   class="d-block  rounded  w-100 mb-3 c-pointer"  id="event_cover"   alt="avatar" src="{{ asset( event.photoURL != null ? event.photoURL : '/assets/img/mini.png' ) }}">
+        
+
+                                        <img   class="d-block  rounded c-pointer mb-3"  style="width:150px" id="event_logo"   alt="avatar" src="{{ asset( event.logoURL != null ? event.logoURL : '/assets/img/logo-Placeholder.png' ) }}">
+
+                                       
+
+
+                                        {{ form_widget(form) }} 
+                                        
+
+
+
+
+
+
+
+                                    <div class="modal fade" id="modal-logo" tabindex="-1" aria-labelledby="modalLabel"
+                                        style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalLabel">{% trans into app.session.get('lng')
+                                                        %}Recadrer l'image{% endtrans %}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="img-container">
+                                                        <img id="image-logo"
+                                                            src="{{ asset('/assets/media/users/blank.png') }}">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{%
+                                                        trans into app.session.get('lng') %}Annuler{% endtrans %}</button>
+                                                    <button type="button" class="btn btn-primary" id="crop-logo-btn">Crop</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                     <div class="modal fade" id="modal-logo-2" tabindex="-1" aria-labelledby="modalLabel"
+                                        style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalLabel">{% trans into app.session.get('lng')
+                                                        %}Recadrer l'image{% endtrans %}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="img-container">
+                                                        <img id="image-logo-2"
+                                                            src="{{ asset('/assets/img/logo-Placeholder.png') }}">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{%
+                                                        trans into app.session.get('lng') %}Annuler{% endtrans %}</button>
+                                                    <button type="button" class="btn btn-primary" id="crop-logo-btn-2">Crop</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                       <a href="{{ path('events_details',{id:event.id}) }}" class="back-btn btn btn-secondary font-weight-bold mt-5">{% trans into  app.session.get('lng') %}Retour{% endtrans %}</a>
+
+
+                                       <button type="submit" class="btn btn-primary font-weight-bold mt-5">{% trans into  app.session.get('lng') %}Modifier{% endtrans %}</button>
+
+
+                                        {{ form_end(form) }}
+
+                                    </div>
+                                </div>
+
+
+
+                                
+                            </div>
+                            <!--end::Title-->
+
+                           
+                        </div>
+                        <!--end::Info-->
+                    </div>
+                    <!--end::Details-->
+ 
+
+                      
+                </div>
+            </div>
+            <!--end::Card-->
+
+
+
+             
+
+
+
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Entry-->
+</div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('/assets/js/events/show.js') }}"></script>
+ 
+
+{% endblock %}

@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('stand_catalogue_delete', {'id': stand_catalogue.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ stand_catalogue.id) }}">
+    <button class="btn btn-danger">{% trans into app.session.get('lng') %}Supprimer{% endtrans %}</button>
+</form>

@@ -1,0 +1,115 @@
+{% extends 'base-app.html.twig' %}
+
+{% block title %}Eventoo | {% trans into app.session.get('lng') %}mes rendez-vous{% endtrans %}  {% endblock %}
+
+
+{% block body %}
+
+    <div class="alert-toast">
+       <div class="bloc-message"> 
+       </div>
+    </div>
+
+
+	<div class="container-fluid  ">
+
+    
+
+
+
+
+
+
+		<section id="networking-stat" class="mt-5 mb-5">
+			<div class="row">
+                <div class="col-md-12 mb-5">
+                    <div class="card  card-stretch gutter-b">
+                         
+                    
+                        <!--begin::Body-->
+                        <div class="card-body position-relative overflow-hidden">
+                            {% set p = app.user.participant %}
+
+                            <div class="participant-item" participant-filter="{{ p.id }}">
+                                {% if p.sessionMeetings | length != 0 %}
+        
+                                
+                                    <h3>{% trans into app.session.get('lng') %}Mes rendez-vous{% endtrans %}</h3>
+        
+                                    <div class="timeline timeline-6 sessions-program mt-3">
+                                            {% for item in p.sessionMeetings | sort((a, b) => a.startDate <=> b.startDate) %}
+        
+                                            <div class="search-time-line timeline-item align-items-start"  time-filter="{{ item.startDate | date("H:i") }}" date-filter="{{ item.startDate | date("Y-m-d") }}" table-filter="{{item.tableNumber}}">
+                                                <!--begin::Item-->
+                                                 
+                                                    <!--begin::Label-->
+                                                    <div class="timeline-label font-weight-bolder text-dark-75 font-size-lg">{{ item.startDate | date("g:i a") }}</div>
+                                                    <!--end::Label-->
+        
+                                                    <!--begin::Badge-->
+                                                    <div class="timeline-badge">
+                                                        <i class="fa fa-genderless text-warning icon-xl"></i>
+                                                    </div>
+                                                    <!--end::Badge-->
+        
+                                                    <!--begin::Text-->
+                                                    <div class="timeline-content  ">
+                                                        
+        
+                                                        <span class="font-weight-bolder text-dark-75 pl-3 font-size-lg"> 
+                                                            {{ item.main.user.firstname }} {{ item.main.user.lastname }}  -  {{ item.second.user.firstname }} {{ item.second.user.lastname }} - <span class="badge border">{{ item.session.name }}</span> <span class="badge border">Table N°{{ item.tableNumber }}</span>
+                                                        </span>
+        
+                                                        <br>
+        
+                                                        <span class="text-muted mr-4">{{ item.startDate | date("m/d/Y ") }}</span>   
+        
+        
+        
+        
+                                                    </div>
+                                                    <!--end::Text-->
+                                                </div>
+                                                <!--end::Item--> 
+                                            {% endfor %}
+        
+                                                
+                                    </div>
+                                    
+                            
+                                    {% else %}
+                                        
+                                    <div class="alert alert-warning">
+                                        {% trans into app.session.get('lng') %}
+                                        Veuillez patienter, l'organisateur de l'événement générera bientôt les réunions pour tout le monde dans l'événement.
+                                        {% endtrans %}
+                                    </div>
+                            {% endif %}
+                            </div>
+                        
+        
+                        
+                             
+                        
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                </div>
+
+
+               
+
+                
+            </div>
+		</section>
+	</div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+	{{ parent() }}
+
+    <script src="/assets/js/events/networking.js"></script>
+
+{% endblock %}

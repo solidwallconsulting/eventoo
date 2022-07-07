@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RoomAccessProfiles index{% endblock %}
+
+{% block body %}
+    <h1>RoomAccessProfiles index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for room_access_profile in room_access_profiles %}
+            <tr>
+                <td>{{ room_access_profile.id }}</td>
+                <td>
+                    <a href="{{ path('room_access_profiles_show', {'id': room_access_profile.id}) }}">show</a>
+                    <a href="{{ path('room_access_profiles_edit', {'id': room_access_profile.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('room_access_profiles_new') }}">Create new</a>
+{% endblock %}

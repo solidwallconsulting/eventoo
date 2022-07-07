@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EventAssociatedProfileFeilds{% endblock %}
+
+{% block body %}
+    <h1>EventAssociatedProfileFeilds</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ event_associated_profile_feild.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('event_associated_profile_feilds_index') }}">back to list</a>
+
+    <a href="{{ path('event_associated_profile_feilds_edit', {'id': event_associated_profile_feild.id}) }}">edit</a>
+
+    {{ include('event_associated_profile_feilds/_delete_form.html.twig') }}
+{% endblock %}

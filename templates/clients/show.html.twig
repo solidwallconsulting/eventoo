@@ -1,0 +1,639 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eventoo{% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+
+<!--begin::Content-->
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Subheader-->
+    <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-1">
+
+                <!--begin::Page Heading-->
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <!--begin::Page Title-->
+                    <h5 class="text-dark font-weight-bold my-1 mr-5"> {% trans into app.session.get('lng')
+                        %}Organisateurs{%
+                        endtrans %} </h5>
+                    <!--end::Page Title-->
+
+                    <!--begin::Breadcrumb-->
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                         <li class="breadcrumb-item">
+                            <a href="/" class="text-muted">{% trans into
+                                app.session.get('lng') %}Accueil{% endtrans %}</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ path('clients_index') }}" class="text-muted">{% trans into app.session.get('lng') %}Organisateurs{% endtrans %}
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="" class="text-muted">{{ client.user.firstname }} {{ client.user.lastname }}</a>
+                        </li>
+
+                    </ul>
+                    <!--end::Breadcrumb-->
+                </div>
+                <!--end::Page Heading-->
+            </div>
+            <!--end::Info-->
+
+            <!--begin::Toolbar-->
+            <div class="d-flex align-items-center">
+
+
+            </div>
+            <!--end::Toolbar-->
+        </div>
+    </div>
+    <!--end::Subheader-->
+
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class=" container ">
+            <!--begin::Card-->
+
+
+
+
+
+            <!-- Modal-->
+            <div class="modal fade" id="clientEditModal" tabindex="-1" role="dialog" aria-labelledby="clientEditModalL"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="clientEditModalL">Client</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i aria-hidden="true" class="ki ki-close"></i>
+                            </button>
+                        </div>
+
+                        {{ form_start(clientForm) }}
+                        <div class="modal-body">
+                            {{ form_widget(clientForm) }}
+                        </div>
+
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">{%
+                                trans into app.session.get('lng') %}Fermer{% endtrans %}</button>
+                            <button type="submit" class="btn btn-primary font-weight-bold">{% trans into
+                                app.session.get('lng') %}Modifier{% endtrans %}</button>
+                        </div>
+
+                        {{ form_end(clientForm) }}
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="modal fade" id="clientPasswordEditModal" tabindex="-1" role="dialog" aria-labelledby="clientPasswordEditModal"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"  >Créer un nouveau mot de passe</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i aria-hidden="true" class="ki ki-close"></i>
+                            </button>
+                        </div>
+
+                        <form action="" method="post"> 
+                        <div class="modal-body">
+                            
+                                 <input type="hidden" name="newpassword" value="8873H76SGTFD7SD67">
+                                <div class="form-group">
+                                    <label for="">{% trans into app.session.get('lng') %}Nouveau mot de passe{% endtrans %}</label>
+                                    <input type="text" class="form-control" name="new-password">
+                                </div>
+                            
+                        </div> 
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">{%
+                                trans into app.session.get('lng') %}Fermer{% endtrans %}</button>
+                            <button type="submit" class="btn btn-primary font-weight-bold">{% trans into
+                                app.session.get('lng') %}Modifier{% endtrans %}</button>
+                        </div>
+                         </form>
+                        
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="card card-custom gutter-b">
+                <div class="card-body">
+                    <!--begin::Details-->
+                    <div class="d-flex mb-9">
+                        <!--begin: Pic-->
+                        <div class="flex-shrink-0 mr-7 mt-lg-0 mt-3">
+                            <div class="symbol symbol-50 symbol-lg-120"> 
+
+
+                                <div class="image-input image-input-outline" id="kt_user_update_avatar">
+                                    
+
+
+                                    <form method="POST" enctype="multipart/form-data" id="update-logo-form">
+                                        <input type="hidden" name="logo-user-update" value="null">
+                                        <div class="modal fade" id="modal-logo" tabindex="-1" aria-labelledby="modalLabel"
+                                        style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalLabel">{% trans into app.session.get('lng')
+                                                        %}Recadrer l'image{% endtrans %}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="img-container">
+                                                        <img id="image-logo"
+                                                            src="{{ client.logoURL }}">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{%
+                                                        trans into app.session.get('lng') %}Annuler{% endtrans %}</button>
+                                                    <button type="button" class="btn btn-primary" id="crop-logo-btn">Crop</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img class="rounded" width="150px" id="logo"
+                                        src="{{ client.logoURL }}" alt="avatar" style="cursor: pointer;">
+                                    <br>
+
+                                    <input type="file" name="logo-client" id="cropper_logo" style="visibility: hidden;width:0">
+                                    <div class="fv-plugins-message-container">
+                                        <div data-field="civility" data-validator="notEmpty" class="fv-help-block" id="logoErr"> 
+                                        </div>
+                                    </div>
+
+                                    </form>
+                                </div>
+
+
+                            </div>
+
+                            <div class="symbol symbol-50 symbol-lg-120 symbol-primary d-none">
+                                <span class="font-size-h3 symbol-label font-weight-boldest">{{client.user.firstname |
+                                    slice(0,2)}}</span>
+                            </div>
+                        </div>
+                        <!--end::Pic-->
+
+                        <!--begin::Info-->
+                        <div class="flex-grow-1">
+                            <!--begin::Title-->
+                            <div class="d-flex justify-content-between flex-wrap mt-1">
+                                <div class="d-flex mr-3">
+                                    
+
+                                    <form method="POST" enctype="multipart/form-data" id="update-photo-form">
+                                        <input type="hidden" name="photo-user-update" value="null">
+
+                                        
+                                        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel"
+                                        style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalLabel">{% trans into app.session.get('lng')
+                                                        %}Recadrer l'image{% endtrans %}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="img-container">
+                                                        <img id="image"
+                                                            src="{{ asset('/assets/media/users/blank.png') }}">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{%
+                                                        trans into app.session.get('lng') %}Annuler{% endtrans %}</button>
+                                                    <button type="button" class="btn btn-primary" id="crop">Crop</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img class="rounded" width="50px" id="avatar"
+                                        src="{{ client.user.photoURL }}"
+                                        alt="avatar"  style="cursor: pointer;">
+                                        <br>
+        
+                                    <input type="file" name="photo-client" id="cropper_image" style="visibility: hidden;width:0" >
+
+                                    </form>
+
+
+                                    
+                                    <a href="#"
+                                        class="text-dark-75 text-hover-primary font-size-h5 font-weight-bold mr-3 ml-3">{{
+                                        client.civility }} {{ client.user.firstname }} {{ client.user.lastname }}</a>
+
+
+
+                                    <a href="#"><i class="flaticon2-correct text-success font-size-h5"></i></a>
+                                </div>
+
+
+
+                                <div class="my-lg-0 my-3">
+                                 <button data-toggle="modal" data-target="#clientPasswordEditModal"
+                                        class="btn btn-sm btn-light-warning font-weight-bolder text-uppercase mr-3">{%
+                                        trans into app.session.get('lng') %}Créer un nouveau mot de passe{% endtrans %}</button>
+
+
+
+                                    <button data-toggle="modal" data-target="#clientEditModal"
+                                        class="btn btn-sm btn-light-success font-weight-bolder text-uppercase mr-3">{%
+                                        trans into app.session.get('lng') %}Modifier{% endtrans %}</button>
+                                </div>
+                            </div>
+                            <!--end::Title-->
+
+                            <!--begin::Content-->
+                            <div class="d-flex flex-wrap justify-content-between mt-1">
+                                <div class="d-flex flex-column flex-grow-1 pr-8">
+                                    <div class="d-flex flex-wrap mb-4">
+                                        <a href="#"
+                                            class="text-dark-50 text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2"><i
+                                                class="flaticon2-new-email mr-2 font-size-lg"></i>{{ client.user.email
+                                            }}</a>
+                                        <a href="#"
+                                            class="text-dark-50 text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2"><i
+                                                class="flaticon2-calendar-3 mr-2 font-size-lg"></i>{{ client.functionnality }}
+                                        </a>
+                                        <a href="#"
+                                            class="text-dark-50 text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2"><i
+                                                class="flaticon2-start-up mr-2 font-size-lg"></i> {{ client.clientName
+                                            }}
+                                        </a>
+
+
+                                        <a href="tel:{{client.countryIndex}} {{client.user.phone}}"
+                                            class="text-dark-50 text-hover-primary font-weight-bold"><i
+                                                class="flaticon2-phone mr-2 font-size-lg"></i>{{client.countryIndex}} {{
+                                            client.user.phone }}</a>
+                                    </div>
+
+
+
+                                </div>
+
+                                <!--<div class="d-flex align-items-center w-25 flex-fill float-right mt-lg-12 mt-8">
+                                    <span class="font-weight-bold text-dark-75">Progress</span>
+                                    <div class="progress progress-xs mx-3 w-100">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 63%;"
+                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="font-weight-bolder text-dark">78%</span>
+                                </div>-->
+                            </div>
+                            <!--end::Content-->
+                        </div>
+                        <!--end::Info-->
+                    </div>
+                    <!--end::Details-->
+
+                    <div class="separator separator-solid"></div>
+
+                    <!--begin::Items-->
+                    <div class="d-flex align-items-center flex-wrap mt-8">
+                        <!--begin::Item-->
+                        <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                            <span class="mr-4">
+                                <i class="flaticon-piggy-bank display-4 text-muted font-weight-bold"></i>
+                            </span>
+                            <div class="d-flex flex-column text-dark-75">
+                                <span class="font-weight-bolder font-size-sm">Earnings</span>
+                                <span class="font-weight-bolder font-size-h5"><span
+                                        class="text-dark-50 font-weight-bold">$</span>249,500</span>
+                            </div>
+                        </div>
+                        <!--end::Item-->
+
+                        <!--begin::Item-->
+                        <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                            <span class="mr-4">
+                                <i class="flaticon-confetti display-4 text-muted font-weight-bold"></i>
+                            </span>
+                            <div class="d-flex flex-column text-dark-75">
+                                <span class="font-weight-bolder font-size-sm">Expenses</span>
+                                <span class="font-weight-bolder font-size-h5"><span
+                                        class="text-dark-50 font-weight-bold">$</span>164,700</span>
+                            </div>
+                        </div>
+                        <!--end::Item-->
+
+                        <!--begin::Item-->
+                        <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                            <span class="mr-4">
+                                <i class="flaticon-pie-chart display-4 text-muted font-weight-bold"></i>
+                            </span>
+                            <div class="d-flex flex-column text-dark-75">
+                                <span class="font-weight-bolder font-size-sm">Net</span>
+                                <span class="font-weight-bolder font-size-h5"><span
+                                        class="text-dark-50 font-weight-bold">$</span>782,300</span>
+                            </div>
+                        </div>
+                        <!--end::Item-->
+
+                        <!--begin::Item-->
+                        <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                            <span class="mr-4">
+                                <i class="flaticon-file-2 display-4 text-muted font-weight-bold"></i>
+                            </span>
+                            <div class="d-flex flex-column flex-lg-fill">
+                                <span class="text-dark-75 font-weight-bolder font-size-sm">73 Tasks</span>
+                                <a href="#" class="text-primary font-weight-bolder">View</a>
+                            </div>
+                        </div>
+                        <!--end::Item-->
+
+                        <!--begin::Item-->
+                        <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                            <span class="mr-4">
+                                <i class="flaticon-chat-1 display-4 text-muted font-weight-bold"></i>
+                            </span>
+                            <div class="d-flex flex-column">
+                                <span class="text-dark-75 font-weight-bolder font-size-sm">648 Comments</span>
+                                <a href="#" class="text-primary font-weight-bolder">View</a>
+                            </div>
+                        </div>
+                        <!--end::Item-->
+
+                        <!--begin::Item-->
+                        <div class="d-flex align-items-center flex-lg-fill mb-2 float-left">
+                            <span class="mr-4">
+                                <i class="flaticon-network display-4 text-muted font-weight-bold"></i>
+                            </span>
+                            <div class="symbol-group symbol-hover">
+                                <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="Mark Stone">
+                                    <img alt="Pic" src="assets/media/users/300_25.jpg" />
+                                </div>
+                                <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="Charlie Stone">
+                                    <img alt="Pic" src="assets/media/users/300_19.jpg" />
+                                </div>
+                                <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="Luca Doncic">
+                                    <img alt="Pic" src="assets/media/users/300_22.jpg" />
+                                </div>
+                                <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="Nick Mana">
+                                    <img alt="Pic" src="assets/media/users/300_23.jpg" />
+                                </div>
+                                <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="Teresa Fox">
+                                    <img alt="Pic" src="assets/media/users/300_18.jpg" />
+                                </div>
+                                <div class="symbol symbol-30 symbol-circle symbol-light">
+                                    <span class="symbol-label font-weight-bold">5+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Item-->
+                    </div>
+                    <!--begin::Items-->
+                </div>
+            </div>
+            <!--end::Card-->
+
+
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card card-custom card-stretch gutter-b">
+                        <!--begin::Header-->
+                        <div class="card-header border-0">
+                            <h3 class="card-title font-weight-bolder text-dark">{% trans into app.session.get('lng')
+                                %}Événements{% endtrans %}</h3>
+                            <div class="card-toolbar">
+                                <a href="{{ path('events_new',{id:client.id}) }}" class="btn btn-sm btn-light-success font-weight-bolder text-uppercase mr-3" >{% trans into app.session.get('lng')
+                                %}Ajouter{% endtrans %}</a>
+                                
+                            </div>
+                        </div>
+                        <!--end::Header-->
+
+                        <!--begin::Body-->
+                        <div class="card-body pt-0">
+
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">{% trans into app.session.get('lng')
+                                %}Nom{% endtrans %}</th> 
+                                        <th scope="col">{% trans into app.session.get('lng')
+                                %}Statut{% endtrans %}</th>
+                                        <th scope="col">{% trans into app.session.get('lng')
+                                %}Page d'accueil{% endtrans %}</th>
+                                        <th scope="col">{% trans into app.session.get('lng')
+                                %}Gestion{% endtrans %}</th>
+                                
+                                        
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for e in client.events %}
+                                        <tr>
+                                            <th scope="row">{{loop.index}}</th>
+                                            <td>{{e.name}}</td>
+                                            
+                                            <td>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                
+                                                <a href="{{ path('events_show',{id:e.id}) }}" class=" mr-3" > 
+                                                    <i class="icon-2x text-dark-50 flaticon-home"></i>
+                                                </a>
+                                            </td>
+                                             <td>
+                                                
+                                                
+                                               <a href="{{ path('events_details',{id:e.id}) }}" class=" mr-3" > 
+                                                    <i class="icon-2x text-dark-50 flaticon2-edit"></i>
+                                                </a>
+                                            </td>
+                                            
+                                    
+                                        </tr> 
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                             
+                             
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card card-custom card-stretch gutter-b">
+                        <!--begin::Header-->
+                        <div class="card-header border-0">
+                            <h3 class="card-title font-weight-bolder text-dark">{% trans into app.session.get('lng')
+                                %}Notes{% endtrans %}</h3>
+                            <div class="card-toolbar">
+
+                            </div>
+                        </div>
+                        <!--end::Header-->
+
+                        <!--begin::Body-->
+                        <div class="card-body pt-0">
+
+                            {{ form_start(noteForm) }}
+                            {{ form_widget(noteForm) }}
+                            <button class="btn btn-sm btn-light-success font-weight-bolder text-uppercase mb-3">{% trans
+                                into app.session.get('lng') %}Ajouter{% endtrans %}</button>
+                            {{ form_end(noteForm) }}
+
+
+                            {% for note in client.notes |reverse %}
+                                {% if note.isAdminNote == true %}
+                                   
+                                   <div class="d-flex align-items-center mb-9   rounded p-5" style="background-color:{{note.category.colorCode}}" >
+    
+                                            <!--begin::Icon-->
+    
+    
+                                            {% if note.category.id== 1 %}
+                                            <span class="svg-icon svg-icon-success mr-5">
+                                                {% endif %}
+                                                {% if note.category.id== 2 %}
+                                                <span class="svg-icon svg-icon-warning mr-5">
+                                                    {% endif %}
+                                                    {% if note.category.id== 3 %}
+                                                    <span class="svg-icon svg-icon-danger mr-5">
+                                                        {% endif %}
+    
+                                                        <span class="svg-icon svg-icon-lg">
+                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
+                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                                height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                <g stroke="none" stroke-width="1" fill="none"
+                                                                    fill-rule="evenodd">
+                                                                    <rect x="0" y="0" width="24" height="24" />
+                                                                    <path
+                                                                        d="M8,3 L8,3.5 C8,4.32842712 8.67157288,5 9.5,5 L14.5,5 C15.3284271,5 16,4.32842712 16,3.5 L16,3 L18,3 C19.1045695,3 20,3.8954305 20,5 L20,21 C20,22.1045695 19.1045695,23 18,23 L6,23 C4.8954305,23 4,22.1045695 4,21 L4,5 C4,3.8954305 4.8954305,3 6,3 L8,3 Z"
+                                                                        fill="#000000" opacity="0.3" />
+                                                                    <path
+                                                                        d="M11,2 C11,1.44771525 11.4477153,1 12,1 C12.5522847,1 13,1.44771525 13,2 L14.5,2 C14.7761424,2 15,2.22385763 15,2.5 L15,3.5 C15,3.77614237 14.7761424,4 14.5,4 L9.5,4 C9.22385763,4 9,3.77614237 9,3.5 L9,2.5 C9,2.22385763 9.22385763,2 9.5,2 L11,2 Z"
+                                                                        fill="#000000" />
+                                                                    <rect fill="#000000" opacity="0.3" x="10" y="9"
+                                                                        width="7" height="2" rx="1" />
+                                                                    <rect fill="#000000" opacity="0.3" x="7" y="9" width="2"
+                                                                        height="2" rx="1" />
+                                                                    <rect fill="#000000" opacity="0.3" x="7" y="13"
+                                                                        width="2" height="2" rx="1" />
+                                                                    <rect fill="#000000" opacity="0.3" x="10" y="13"
+                                                                        width="7" height="2" rx="1" />
+                                                                    <rect fill="#000000" opacity="0.3" x="7" y="17"
+                                                                        width="2" height="2" rx="1" />
+                                                                    <rect fill="#000000" opacity="0.3" x="10" y="17"
+                                                                        width="7" height="2" rx="1" />
+                                                                </g>
+                                                            </svg>
+                                                            <!--end::Svg Icon-->
+                                                        </span> </span>
+                                                    <!--end::Icon-->
+    
+                                                    <!--begin::Title-->
+                                                    <div class="d-flex flex-column flex-grow-1 mr-2">
+                                                        <a href="javascript:;"
+                                                            class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1">
+                                                            {{note.content}}
+                                                        </a>
+                                                        <span class="text-muted font-weight-bold">{{note.date |date("m/d/Y g:i:s a") }}</span>
+                                                    </div>
+                                                    <!--end::Title-->
+                                                    <span class="font-weight-bolder text-warning py-1 font-size-lg">
+    
+    
+    
+                                                        <form method="post"
+                                                            action="{{ path('notes_delete', {'id': note.id,'idClient': client.id}) }}"
+                                                            onsubmit="return confirm('{% trans into app.session.get('lng') %}Êtes-vous sûr de bien vouloir supprimer cet élément?{% endtrans %}');">
+                                                            <input type="hidden" name="_token"
+                                                                value="{{ csrf_token('delete' ~ note.id) }}">
+                                                            <button class="btn">
+                                                                <span class="svg-icon svg-icon-danger svg-icon-2x">
+                                                                    <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo13\dist/../src/media/svg/icons\General\Trash.svg--><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                        width="24px" height="24px" viewBox="0 0 24 24"
+                                                                        version="1.1">
+                                                                        <g stroke="none" stroke-width="1" fill="none"
+                                                                            fill-rule="evenodd">
+                                                                            <rect x="0" y="0" width="24" height="24" />
+                                                                            <path
+                                                                                d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z"
+                                                                                fill="#000000" fill-rule="nonzero" />
+                                                                            <path
+                                                                                d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z"
+                                                                                fill="#000000" opacity="0.3" />
+                                                                        </g>
+                                                                    </svg>
+                                                                    <!--end::Svg Icon-->
+                                                                </span>
+                                                            </button>
+                                                        </form>
+    
+    
+                                                    </span>
+                                                    <!--begin::Lable-->
+    
+                                                    <!--end::Lable-->
+                                        </div>
+                                {% endif %}
+
+                            {% endfor %}
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Entry-->
+</div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+{{ parent() }}
+
+<script src="{{ asset('/assets/js/clients/show.js') }} "></script>
+
+{% endblock %}

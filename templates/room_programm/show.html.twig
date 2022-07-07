@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RoomProgramm{% endblock %}
+
+{% block body %}
+    <h1>RoomProgramm</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ room_programm.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ room_programm.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ room_programm.description }}</td>
+            </tr>
+            <tr>
+                <th>StartDate</th>
+                <td>{{ room_programm.startDate ? room_programm.startDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EndDate</th>
+                <td>{{ room_programm.endDate ? room_programm.endDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Timezone</th>
+                <td>{{ room_programm.timezone }}</td>
+            </tr>
+            <tr>
+                <th>Tags</th>
+                <td>{{ room_programm.tags ? room_programm.tags|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ManageInteractivity</th>
+                <td>{{ room_programm.manageInteractivity ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CanChat</th>
+                <td>{{ room_programm.canChat ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>ActivateSondage</th>
+                <td>{{ room_programm.activateSondage ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>ActivateParticipantsList</th>
+                <td>{{ room_programm.activateParticipantsList ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>ActivateQuestionResponse</th>
+                <td>{{ room_programm.activateQuestionResponse ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>SendQuestioninPrivate</th>
+                <td>{{ room_programm.sendQuestioninPrivate ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Mode</th>
+                <td>{{ room_programm.mode }}</td>
+            </tr>
+            <tr>
+                <th>LiveLinkURL</th>
+                <td>{{ room_programm.liveLinkURL }}</td>
+            </tr>
+            <tr>
+                <th>LiveTranslationLinkURL</th>
+                <td>{{ room_programm.liveTranslationLinkURL }}</td>
+            </tr>
+            <tr>
+                <th>ReShareLinkURL</th>
+                <td>{{ room_programm.reShareLinkURL }}</td>
+            </tr>
+            <tr>
+                <th>ReShareTranslationLinkURL</th>
+                <td>{{ room_programm.reShareTranslationLinkURL }}</td>
+            </tr>
+            <tr>
+                <th>MainSponsorPhotoURL</th>
+                <td>{{ room_programm.mainSponsorPhotoURL }}</td>
+            </tr>
+            <tr>
+                <th>CanBeShowenInProgrammePage</th>
+                <td>{{ room_programm.canBeShowenInProgrammePage ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ room_programm.type }}</td>
+            </tr>
+            <tr>
+                <th>Sponsors</th>
+                <td>{{ room_programm.sponsors ? room_programm.sponsors|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Exposers</th>
+                <td>{{ room_programm.exposers ? room_programm.exposers|join(', ') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('room_programm_index') }}">back to list</a>
+
+    <a href="{{ path('room_programm_edit', {'id': room_programm.id}) }}">edit</a>
+
+    {{ include('room_programm/_delete_form.html.twig') }}
+{% endblock %}

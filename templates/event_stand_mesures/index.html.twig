@@ -1,0 +1,126 @@
+ 
+{% extends 'base.html.twig' %}
+
+ 
+
+{% block body %}
+	<!--begin::Subheader-->
+	<div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+		<div
+			class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+			<!--begin::Info-->
+			<div
+				class="d-flex align-items-center flex-wrap mr-1">
+
+				<!--begin::Page Heading-->
+				<div
+					class="d-flex align-items-baseline flex-wrap mr-5">
+					<!--begin::Page Title-->
+					<h5 class="text-dark font-weight-bold my-1 mr-5">
+						{% trans into app.session.get('lng') %}Configuration{% endtrans %}
+					</h5>
+					<!--end::Page Title-->
+
+					<!--begin::Breadcrumb-->
+					<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+						<li class="breadcrumb-item">
+							<a href="{{ path('index_route') }}" class="text-muted">{% trans into
+                                app.session.get('lng') %}Accueil{% endtrans %}</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="{{ path('configuration_index') }}" class="text-muted">{% trans into
+                                app.session.get('lng') %}Configuration{% endtrans %}</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="" class="text-muted">{% trans into app.session.get('lng') %}Mesures des stands{% endtrans %}
+							</a>
+						</li>
+					</ul>
+					<!--end::Breadcrumb-->
+
+				</div>
+				<!--end::Page Heading-->
+			</div>
+			<!--end::Info-->
+		</div>
+	</div>
+	<!--end::Subheader-->
+
+
+	<div
+		class="card card-custom card-stretch gutter-b">
+		<!--begin::Header-->
+		<div class="card-header border-0 py-5">
+			<h3 class="card-title align-items-start flex-column">
+				<span class="card-label font-weight-bolder text-dark">{% trans into app.session.get('lng') %}Mesures des stands{% endtrans %}</span>
+				 
+			</h3>
+			<div class="card-toolbar"> 
+
+                <a class="btn btn-success font-weight-bolder font-size-sm" href="{{ path('event_stand_mesures_new') }}">
+                <span class="svg-icon svg-icon-md svg-icon-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24"/>
+                            <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+                            <path d="M11,11 L11,7 C11,6.44771525 11.4477153,6 12,6 C12.5522847,6 13,6.44771525 13,7 L13,11 L17,11 C17.5522847,11 18,11.4477153 18,12 C18,12.5522847 17.5522847,13 17,13 L13,13 L13,17 C13,17.5522847 12.5522847,18 12,18 C11.4477153,18 11,17.5522847 11,17 L11,13 L7,13 C6.44771525,13 6,12.5522847 6,12 C6,11.4477153 6.44771525,11 7,11 L11,11 Z" fill="#000000"/>
+                        </g>
+                    </svg>
+                </span>
+                {% trans into app.session.get('lng') %}Ajouter{% endtrans %}</a>
+			</div>
+		</div>
+		<!--end::Header-->
+
+		<!--begin::Body-->
+		<div class="card-body py-0">
+			<!--begin::Table-->
+			<div class="table-responsive">
+				<table class="datatable-bordered datatable-head-custom datatable-table general_datatable" >
+ 
+                    <thead>
+						<tr class="text-left">
+							 
+							<th  data-field="first" class="pr-0">#</th> 
+							<th class="text-center" >{% trans into app.session.get('lng') %}Mesure{% endtrans %}</th> 
+                             
+							<th  data-field="last" class="pr-0 text-right" >Action</th>
+						</tr>
+					</thead>
+                    <tbody>
+                        {% for event_stand_mesure in event_stand_mesures %}
+                        <tr>
+                            <td>{{ event_stand_mesure.id }}</td>
+                            <td>{{ event_stand_mesure.meusure }}</td>
+                            <td>
+
+                                <a href="{{ path('event_stand_mesures_edit', {'id': event_stand_mesure.id}) }}" class=" btn-icon  btn-hover-primary btn-sm mx-3">
+                                    <span class="svg-icon svg-icon-md svg-icon-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewbox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24"></rect>
+                                                <path d="M12.2674799,18.2323597 L12.0084872,5.45852451 C12.0004303,5.06114792 12.1504154,4.6768183 12.4255037,4.38993949 L15.0030167,1.70195304 L17.5910752,4.40093695 C17.8599071,4.6812911 18.0095067,5.05499603 18.0083938,5.44341307 L17.9718262,18.2062508 C17.9694575,19.0329966 17.2985816,19.701953 16.4718324,19.701953 L13.7671717,19.701953 C12.9505952,19.701953 12.2840328,19.0487684 12.2674799,18.2323597 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.701953, 10.701953) rotate(-135.000000) translate(-14.701953, -10.701953) "></path>
+                                                <path d="M12.9,2 C13.4522847,2 13.9,2.44771525 13.9,3 C13.9,3.55228475 13.4522847,4 12.9,4 L6,4 C4.8954305,4 4,4.8954305 4,6 L4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 L2,6 C2,3.790861 3.790861,2 6,2 L12.9,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                            </g>
+                                        </svg><!--end::Svg Icon-->
+                                    </span>
+                                </a> 
+                            </td>
+                        </tr> 
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+
+ 
+
+
+			</div>
+			<!--end::Table-->
+		</div>
+		<!--end::Body-->
+	</div>
+
+
+	
+{% endblock %}

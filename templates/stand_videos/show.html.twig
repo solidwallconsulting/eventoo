@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StandVideos{% endblock %}
+
+{% block body %}
+    <h1>StandVideos</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ stand_video.id }}</td>
+            </tr>
+            <tr>
+                <th>Lien</th>
+                <td>{{ stand_video.lien }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ stand_video.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ stand_video.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('stand_videos_index') }}">back to list</a>
+
+    <a href="{{ path('stand_videos_edit', {'id': stand_video.id}) }}">edit</a>
+
+    {{ include('stand_videos/_delete_form.html.twig') }}
+{% endblock %}

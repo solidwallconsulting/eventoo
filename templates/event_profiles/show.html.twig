@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EventProfiles{% endblock %}
+
+{% block body %}
+    <h1>EventProfiles</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ event_profile.id }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ event_profile.label }}</td>
+            </tr>
+            <tr>
+                <th>Tarification</th>
+                <td>{{ event_profile.tarification }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ event_profile.price }}</td>
+            </tr>
+            <tr>
+                <th>Descreption</th>
+                <td>{{ event_profile.descreption }}</td>
+            </tr>
+            <tr>
+                <th>ParticipantsNumber</th>
+                <td>{{ event_profile.participantsNumber }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('event_profiles_index') }}">back to list</a>
+
+    <a href="{{ path('event_profiles_edit', {'id': event_profile.id}) }}">edit</a>
+
+    {{ include('event_profiles/_delete_form.html.twig') }}
+{% endblock %}

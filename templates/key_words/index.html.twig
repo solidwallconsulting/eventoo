@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EventRooms index{% endblock %}
+
+{% block body %}
+    <h1>EventRooms index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Label</th>
+                <th>Description</th>
+                <th>PhotoURL</th>
+                <th>PhotoAlt</th>
+                <th>MaximumNumberOfParticipants</th>
+                <th>YoutubeShare</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for event_room in event_rooms %}
+            <tr>
+                <td>{{ event_room.id }}</td>
+                <td>{{ event_room.label }}</td>
+                <td>{{ event_room.description }}</td>
+                <td>{{ event_room.photoURL }}</td>
+                <td>{{ event_room.photoAlt }}</td>
+                <td>{{ event_room.maximumNumberOfParticipants }}</td>
+                <td>{{ event_room.youtubeShare ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('key_words_show', {'id': event_room.id}) }}">show</a>
+                    <a href="{{ path('key_words_edit', {'id': event_room.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('key_words_new') }}">Create new</a>
+{% endblock %}

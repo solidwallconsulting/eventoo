@@ -1,0 +1,121 @@
+ 
+
+
+ 
+{% extends 'base.html.twig' %}
+
+ 
+
+{% block body %}
+	<!--begin::Subheader-->
+	<div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+		<div
+			class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+			<!--begin::Info-->
+			<div
+				class="d-flex align-items-center flex-wrap mr-1">
+
+				<!--begin::Page Heading-->
+				<div
+					class="d-flex align-items-baseline flex-wrap mr-5">
+					<!--begin::Page Title-->
+					<h5 class="text-dark font-weight-bold my-1 mr-5">
+						{% trans into app.session.get('lng') %}Configuration{% endtrans %}
+					</h5>
+					<!--end::Page Title-->
+
+					<!--begin::Breadcrumb-->
+					<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+						<li class="breadcrumb-item">
+							<a href="{{ path('index_route') }}" class="text-muted">{% trans into
+                                app.session.get('lng') %}Accueil{% endtrans %}</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="{{ path('configuration_index') }}" class="text-muted">{% trans into
+                                app.session.get('lng') %}Configuration{% endtrans %}</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="" class="text-muted">{% trans into app.session.get('lng') %}Confidentialité des salles{% endtrans %}
+							</a>
+						</li>
+					</ul>
+					<!--end::Breadcrumb-->
+
+				</div>
+				<!--end::Page Heading-->
+			</div>
+			<!--end::Info-->
+		</div>
+	</div>
+	<!--end::Subheader-->
+
+
+	<div
+		class="card card-custom card-stretch gutter-b">
+		<!--begin::Header-->
+		<div class="card-header border-0 py-5">
+			<h3 class="card-title align-items-start flex-column">
+				<span class="card-label font-weight-bolder text-dark">{% trans into app.session.get('lng') %}Confidentialité des salles{% endtrans %}</span>
+				 
+			</h3>
+			<div class="card-toolbar"> 
+
+                <!--<a class="btn btn-success font-weight-bolder font-size-sm" href="{{ path('event_rooms_privacy_new') }}">
+                <span class="svg-icon svg-icon-md svg-icon-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24"/>
+                            <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+                            <path d="M11,11 L11,7 C11,6.44771525 11.4477153,6 12,6 C12.5522847,6 13,6.44771525 13,7 L13,11 L17,11 C17.5522847,11 18,11.4477153 18,12 C18,12.5522847 17.5522847,13 17,13 L13,13 L13,17 C13,17.5522847 12.5522847,18 12,18 C11.4477153,18 11,17.5522847 11,17 L11,13 L7,13 C6.44771525,13 6,12.5522847 6,12 C6,11.4477153 6.44771525,11 7,11 L11,11 Z" fill="#000000"/>
+                        </g>
+                    </svg>
+                </span>
+                {% trans into app.session.get('lng') %}Ajouter{% endtrans %}</a>-->
+			</div>
+		</div>
+		<!--end::Header-->
+
+		<!--begin::Body-->
+		<div class="card-body py-0">
+			<!--begin::Table-->
+			<div class="table-responsive">
+				<table class="datatable-bordered datatable-head-custom datatable-table general_datatable" >
+ 
+                    <thead>
+						<tr class="text-left">
+							 
+							<th  data-field="first" class="pr-0">#</th> 
+							<th class="text-center" >{% trans into app.session.get('lng') %}Label{% endtrans %}</th> 
+                             
+							<th  data-field="last" class="pr-0 text-right" >Action</th>
+						</tr>
+					</thead>
+        <tbody>
+        {% for event_rooms_privacy in event_rooms_privacies %}
+            <tr>
+                <td>{{ loop.index}}</td>
+                <td>
+                    {% if app.session.get('lng') == 'en_EN' %}
+                        {{ event_rooms_privacy.labelEn }}
+                    {% else %}
+                        {{ event_rooms_privacy.label }}
+                    {% endif %}
+                
+                </td>
+                <td>
+                  
+                </td>
+            </tr> 
+             
+        {% endfor %}
+        </tbody>
+    </table>
+			</div>
+			<!--end::Table-->
+		</div>
+		<!--end::Body-->
+	</div>
+
+
+	
+{% endblock %}

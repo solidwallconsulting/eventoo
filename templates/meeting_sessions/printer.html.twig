@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imprimer</title>
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+
+    <link href="{{ asset('/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+ 
+    <link href="{{ asset('/assets/plugins/phone/build/css/intlTelInput.min.css') }}" rel="stylesheet" type="text/css" /> 
+    <link href="{{ asset('/assets/plugins/cropperjs/dist/cropper.min.css') }}" rel="stylesheet" type="text/css" /> 
+        
+    <link href="{{ asset('/assets/plugins/OwlCarousel/dist/assets/owl.carousel.min.css') }}" rel="stylesheet" type="text/css" /> 
+    
+ 
+    <link href="{{ asset('/assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/assets/css/app.css') }}" rel="stylesheet" type="text/css" />
+
+
+</head>
+<body>
+
+
+     
+    {% set p = participant %}
+
+
+
+    <div class="card card-custom card-stretch gutter-b">
+		<!--begin::Header-->
+		<div class="card-header border-0 py-5">
+			<h3 class="card-title align-items-start flex-column">
+				<span class="card-label font-weight-bolder text-dark">{% trans into app.session.get('lng') %}Liste de rendez-vous{% endtrans %} : {{ p.user.firstname }} {{ p.user.lastname }}</span> 
+			</h3>
+        </div>
+
+
+        <div class="card-body"> 
+
+                    <div class="participant-item" participant-filter="{{ p.id }}">
+                        {% if p.sessionMeetings | length != 0 %}
+
+                        
+                             
+
+                            <div class="mt-5">
+                                   <table class="table">
+
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>{% trans into app.session.get('lng') %}Horaire{% endtrans %}</th>
+                                            <th>{% trans into app.session.get('lng') %}Date{% endtrans %}</th>
+                                            <th>{% trans into app.session.get('lng') %}Nom et prénom{% endtrans %}</th>
+                                            <th>{% trans into app.session.get('lng') %}Email{% endtrans %}</th>
+                                            <th>{% trans into app.session.get('lng') %}Télephone{% endtrans %}</th>
+                                            <th>{% trans into app.session.get('lng') %}Table{% endtrans %}</th>
+                                            <th>{% trans into app.session.get('lng') %}Session{% endtrans %}</th>
+                                            
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        {% for item in p.sessionMeetings | sort((a, b) => a.startDate <=> b.startDate) %}
+
+
+                                        {% if item.session.room.id == room.id %}
+
+                                            <tr class="search-time-line timeline-item align-items-start"  time-filter="{{ item.startDate | date("H:i") }}" date-filter="{{ item.startDate | date("Y-m-d") }}" table-filter="{{item.tableNumber}}">
+                                                <!--begin::Item-->
+                                                
+                                                    <td>{{ loop.index }}</td>
+                                                    <td class=" font-weight-bolder text-dark-75 font-size-lg">{{ item.startDate | date("g:i a") }}</td>
+
+                                                    <td>
+                                                        <span class="font-weight-bolder text-dark-75 font-size-lg">{{ item.startDate | date("m/d/Y ") }}</span>   
+        
+                                                    </td>
+
+
+                                                    <td>{{ item.second.user.firstname }} {{ item.second.user.lastname }}</td>
+                                                    
+                                                    <td>{{ item.second.user.email }}</td>
+                                                    <td>{{ item.second.user.phone }}</td>
+                                                    
+                                                    
+        
+                                                    
+                                                   
+                                                    
+
+                                                    <td><span class="badge border">Table N°{{ item.tableNumber }}</span></td>
+                                                    <td>
+                                                         
+                                                            <span class="badge border">{{ item.session.name }}</span> 
+                                                       
+                                                    </td>
+                                                     
+                                                </tr>
+                                            <!--end::Item--> 
+                                        {% endif %}
+                                        
+                                    
+                                    {% endfor %}
+
+
+                                    </tbody>
+                                   </table>
+
+                                        
+                            </div>
+                            
+                        
+
+                        <hr>
+                    
+                    {% endif %}
+                    </div>
+                
+
+                
+                     
+                
+
+                
+
+
+
+                
+        </div>
+
+    </div>
+
+ 
+
+
+
+    <script src="{{ asset('/assets/plugins/global/plugins.bundle.js') }} "></script>  
+
+
+<script>
+    $(document).ready(function(){
+        print();
+ 
+
+
+        window.onafterprint = function(){
+            window.history.back();
+        }
+
+
+    })
+</script>
+
+
+  
+
+
+
+
+    
+</body>
+</html>

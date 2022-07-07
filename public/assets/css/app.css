@@ -1,0 +1,24 @@
+.aside-menu {
+    background-color: #00bcd4;
+}
+
+@media (min-width: 992px){
+    .brand {
+        background-color: #00bcd4;
+    }
+}
+
+@media (max-width: 991.98px){
+    .header-mobile { 
+        background-color: #00bcd4; 
+    }
+}
+
+.aside {
+    width: 150px;
+    background-color: #00bcd4;
+}
+
+.aside-menu .menu-nav > .menu-item > .menu-heading .menu-text, .aside-menu .menu-nav > .menu-item > .menu-link .menu-text {
+    color: #ffffff;
+}

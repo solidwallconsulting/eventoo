@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EventAssociatedProfileFeilds{% endblock %}
+
+{% block body %}
+    <h1>Create new EventAssociatedProfileFeilds</h1>
+
+    {{ include('event_associated_profile_feilds/_form.html.twig') }}
+
+    <a href="{{ path('event_associated_profile_feilds_index') }}">back to list</a>
+{% endblock %}

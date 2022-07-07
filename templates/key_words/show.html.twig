@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EventRooms{% endblock %}
+
+{% block body %}
+    <h1>EventRooms</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ event_room.id }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ event_room.label }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ event_room.description }}</td>
+            </tr>
+            <tr>
+                <th>PhotoURL</th>
+                <td>{{ event_room.photoURL }}</td>
+            </tr>
+            <tr>
+                <th>PhotoAlt</th>
+                <td>{{ event_room.photoAlt }}</td>
+            </tr>
+            <tr>
+                <th>MaximumNumberOfParticipants</th>
+                <td>{{ event_room.maximumNumberOfParticipants }}</td>
+            </tr>
+            <tr>
+                <th>YoutubeShare</th>
+                <td>{{ event_room.youtubeShare ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('key_words_index') }}">back to list</a>
+
+    <a href="{{ path('key_words_edit', {'id': event_room.id}) }}">edit</a>
+
+    {{ include('key_words/_delete_form.html.twig') }}
+{% endblock %}

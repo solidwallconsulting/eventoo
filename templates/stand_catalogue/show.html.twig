@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StandCatalogue{% endblock %}
+
+{% block body %}
+    <h1>StandCatalogue</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ stand_catalogue.id }}</td>
+            </tr>
+            <tr>
+                <th>CatalogeName</th>
+                <td>{{ stand_catalogue.catalogeName }}</td>
+            </tr>
+            <tr>
+                <th>CatalogePDFURL</th>
+                <td>{{ stand_catalogue.catalogePDFURL }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('stand_catalogue_index') }}">back to list</a>
+
+    <a href="{{ path('stand_catalogue_edit', {'id': stand_catalogue.id}) }}">edit</a>
+
+    {{ include('stand_catalogue/_delete_form.html.twig') }}
+{% endblock %}

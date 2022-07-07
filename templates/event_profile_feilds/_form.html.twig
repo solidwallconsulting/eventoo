@@ -1,0 +1,25 @@
+
+
+{{ form_start(form) }}
+
+
+    {{ form_label(form.primaryFeild) }}
+    <div class="d-bloc">
+        {{ form_widget(form.primaryFeild) }}
+
+    </div>
+
+    {{ form_label(form.required) }}
+    <div class="d-bloc">
+        {{ form_widget(form.required) }}
+
+    </div>
+    
+
+    {{ form_widget(form) }}
+
+    
+    
+    
+    <button class="btn btn-primary">{% trans into app.session.get('lng') %}Enregistrer{% endtrans %}</button>
+{{ form_end(form) }}

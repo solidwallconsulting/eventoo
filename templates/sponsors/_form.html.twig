@@ -1,0 +1,27 @@
+{{ form_start(form) }}
+    <div class="form-group ">
+                                            <label for="">{{ form_label(form.logoURL) }}</label> <br/>
+
+                                            <img class="rounded mb-3" style="height: 80px !important;"  src="{{ sponsor.logoURL }}" id="add-sponsor-logo-holder" />
+                                            <div class="d-none">{{ form_widget(form.logoURL) }}</div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">{{ form_label(form.name) }}</label>
+                                            {{ form_widget(form.name) }}
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">{{ form_label(form.website) }}</label>
+                                            {{ form_widget(form.website) }}
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">{{ form_label(form.type) }}</label>
+                                            {{ form_widget(form.type) }}
+
+                                        </div>
+
+
+    <button class="btn btn-primary">{% trans into app.session.get('lng') %}Enregistrer{% endtrans %}</button>
+{{ form_end(form) }}
